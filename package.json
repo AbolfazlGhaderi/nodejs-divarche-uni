@@ -12,6 +12,7 @@
   "author": "Abolfazl Ghaderi",
   "license": "MIT",
   "dependencies": {
+    "@intelika/logger": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -21,7 +22,9 @@
     "helmet": "^7.1.0",
     "morgan": "^1.10.0",
     "pg": "^8.11.5",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.3.20",
+    "winston": "^3.13.0",
+    "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
