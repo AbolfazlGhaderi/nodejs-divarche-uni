@@ -15,5 +15,5 @@ export const appDataSrc = new DataSource({
   entities: [join(process.cwd(), mainDir, "models", "**/*.model{.ts,.js}")],
   //   migrations: [join(process.cwd(), mainDir, "models", "migrations", "**/**{.ts,.js}")],
   synchronize: true,
-  logging: true,
+  logging: false,
 });

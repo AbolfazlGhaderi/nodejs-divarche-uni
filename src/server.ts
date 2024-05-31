@@ -1,24 +1,24 @@
-import application from "./app";
+import {App} from "./app";
 import http from "http";
 import dotenv from "dotenv";
 import { appDataSrc } from "./core/app/app.dataSource";
 import { logger } from "./core/logging/logger";
+import { Container } from "inversify";
 
 dotenv.config();
 
-const server = http.createServer(application);
-const port = process.env.APP_PORT || 4020;
+// const server = http.createServer(App);
 
-async function bootStrap(): Promise<void> {
+const PORT = parseInt(process.env.PORT || "3000");
+async function bootStrap() {
   try {
+    const container = new Container({ defaultScope: "Singleton" });
+    const app = new App(container, PORT);
     await appDataSrc.initialize();
     logger.info("Database connected", { context: "BootStrap" });
-    server.listen(port, () => {
-      logger.info(`server is starting on http://localhost:${port}`, { context: "BootStrap" });
-    });
-  } catch (err) {
-    // logger
-    logger.error("app crashed", { context: "BootStrap", err });
+    app.start();
+  } catch (error) {
+    logger.error("Error starting the server", error);
     process.exit(1);
   }
 }
