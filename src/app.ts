@@ -20,7 +20,7 @@
 
 import "reflect-metadata";
 import cors from "cors";
-import { Application, json, urlencoded } from "express";
+import express, { Application, json, urlencoded } from "express";
 import { Server } from "http";
 import { Container } from "inversify";
 import { InversifyExpressServer } from "inversify-express-utils";
@@ -32,6 +32,7 @@ import { logger } from "./core/logging/logger";
 
 //should import the controller to create metadata
 import "./modules/user/user.controller";
+import path from "path";
 
 
 
@@ -64,6 +65,7 @@ export class App {
     app.set("view engine", "ejs");
     app.set('views', './src/views');
     app.disable("x-powered-by");
+    app.use("/assets", express.static(path.join(__dirname,'../public')))
     app.use(json());
     app.use(urlencoded({ extended: false }));
     app.use(morgan("dev"));
