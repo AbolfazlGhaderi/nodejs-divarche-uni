@@ -65,11 +65,14 @@ export class App {
     app.set("view engine", "ejs");
     app.set('views', './src/views');
     app.disable("x-powered-by");
-    app.use("/assets", express.static(path.join(__dirname,'../public')))
     app.use(json());
     app.use(urlencoded({ extended: false }));
     app.use(morgan("dev"));
     app.use(cors());
+    app.use("/assets", express.static(path.join(__dirname,'../public')))
+
+
+
   }
 }
 

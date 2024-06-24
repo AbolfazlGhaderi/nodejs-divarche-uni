@@ -1,5 +1,4 @@
 import {App} from "./app";
-import http from "http";
 import dotenv from "dotenv";
 import { appDataSrc } from "./core/app/app.dataSource";
 import { logger } from "./core/logging/logger";
