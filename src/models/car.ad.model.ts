@@ -18,8 +18,6 @@ export class CarAdEntity {
   engine_check: boolean;
   @Column({ nullable: false, default: true }) // true : healthy  false : Un-Healthy
   gearbox_check: boolean;
-  @Column({ nullable: false }) // For Storing the Timestamp
-  create_at: string;
   @CreateDateColumn()
   create_atr: Date;
   @UpdateDateColumn()
