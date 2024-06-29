@@ -34,7 +34,7 @@ import { logger } from "./core/logging/logger";
 import "./modules/user/user.controller";
 import path from "path";
 
-
+const view = path.join(__dirname,'../src/views')
 
 export class App {
   private readonly _container: Container;
@@ -63,16 +63,13 @@ export class App {
 
   private middlewares(app: Application): void {
     app.set("view engine", "ejs");
-    app.set('views', './src/views');
+    app.set('views', view);
     app.disable("x-powered-by");
     app.use(json());
     app.use(urlencoded({ extended: false }));
     app.use(morgan("dev"));
     app.use(cors());
-    app.use("/assets", express.static(path.join(__dirname,'../public')))
-
-
-
+    // app.use("/assets", express.static(path.join(__dirname,'../public')))
   }
 }
 
