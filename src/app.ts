@@ -30,11 +30,13 @@ import { InversifyExpressServer } from "inversify-express-utils";
 
 import { bindings } from "./iOC/container";
 import { logger } from "./core/logging/logger";
+import { SessionConfig } from "./core/configs/session.config";
+import { CheckSession } from "./core/middlewares/Session.middlewares";
 
 //should import the controller to create metadata
-import "./modules/user/user.controller";
 import "./modules/ad/ad.controller";
-import { SessionConfig } from "./core/configs/session.config";
+import "./modules/user/user.controller";
+
 
 // Variables
 const view = path.join(__dirname, "../src/views");
@@ -70,11 +72,12 @@ export class App {
     app.set("view engine", "ejs");
     app.set("views", view);
     app.disable("x-powered-by");
-    app.use(SessionConfig);
     app.use(json());
     app.use(urlencoded({ extended: false }));
     app.use(morgan("dev"));
     app.use(cors());
+    app.use(SessionConfig);
+    app.use(CheckSession())
     // app.use("/assets", express.static(path.join(__dirname,'../public')))
   }
 }

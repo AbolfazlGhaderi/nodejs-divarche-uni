@@ -3,7 +3,7 @@
     "target": "es2022",
     "module": "Node16",
     "lib": ["es2023"],
-    // "typeRoots": ["node_modules/@daochild/tronweb-typescript", "node_modules/@types"],
+    "typeRoots": ["node_modules/@types","./src/common/types"],
     "moduleResolution": "Node16",
     "rootDir": "./src",
     "outDir": "./dist",
@@ -19,13 +19,13 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "strictPropertyInitialization": false,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
     // "strictNullChecks": true,
     // "pretty": true,
     // "forceConsistentCasingInFileNames": true,
     // "sourceMap": true,
     // "declaration": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts","src/common/types/*.d.ts"],
   "exclude": ["node_modules"]
 }

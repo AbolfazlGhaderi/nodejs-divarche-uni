@@ -1,4 +1,4 @@
-import { BaseHttpController, controller, httpGet, httpPost, requestBody, response } from "inversify-express-utils";
+import { BaseHttpController, controller, httpGet, httpPost, request, requestBody, response } from "inversify-express-utils";
 import express from "express";
 import { inject } from "inversify";
 import { IOCTYPES } from "../../iOC/ioc.types";
@@ -19,8 +19,9 @@ export class UserController extends BaseHttpController {
   }
 
   @httpGet("/")
-  async getUsers(@response() res: express.Response) {
-    const users =  await this.userService.getUsers()
+  async getUsers(@request() req:express.Request ,@response() res: express.Response) {
+    
+    const users =  await this.userService.getUsers(req)
     res.send(users)
   }
 }
