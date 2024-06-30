@@ -18,14 +18,14 @@
 
 // export default app;
 
-import "reflect-metadata";
 import cors from "cors";
-import  { Application, json, urlencoded } from "express";
+import path from "path";
+import "reflect-metadata";
+import morgan from "morgan";
 import { Server } from "http";
 import { Container } from "inversify";
+import { Application, json, urlencoded } from "express";
 import { InversifyExpressServer } from "inversify-express-utils";
-import morgan from "morgan";
-import path from "path";
 // import { Logger, errorHandler, lastHandler, notFoundHandler } from "./core";
 
 import { bindings } from "./iOC/container";
@@ -34,9 +34,13 @@ import { logger } from "./core/logging/logger";
 //should import the controller to create metadata
 import "./modules/user/user.controller";
 import "./modules/ad/ad.controller";
+import { SessionConfig } from "./core/configs/session.config";
 
+// Variables
+const view = path.join(__dirname, "../src/views");
 
-const view = path.join(__dirname,'../src/views')
+//
+
 export class App {
   private readonly _container: Container;
   private readonly _port: number;
@@ -64,8 +68,9 @@ export class App {
 
   private middlewares(app: Application): void {
     app.set("view engine", "ejs");
-    app.set('views', view);
+    app.set("views", view);
     app.disable("x-powered-by");
+    app.use(SessionConfig);
     app.use(json());
     app.use(urlencoded({ extended: false }));
     app.use(morgan("dev"));
@@ -73,4 +78,3 @@ export class App {
     // app.use("/assets", express.static(path.join(__dirname,'../public')))
   }
 }
-
