@@ -1,3 +1,4 @@
+import { CityEntity } from "./city.model";
 import { UserEntity } from "./user.model";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
@@ -23,7 +24,11 @@ export class CarAdEntity {
   @UpdateDateColumn()
   update_at: Date;
 
-  @ManyToOne(() => UserEntity, (user) => user.car_ads)
+  @ManyToOne(() => UserEntity, (user) => user.car_ads, { nullable: false })
   @JoinColumn({ name: "user_id" })
   user: UserEntity;
+
+  @ManyToOne(() => CityEntity, (city) => city.car_ad, { nullable: false })
+  @JoinColumn({ name: "city_id" })
+  city: string;
 }

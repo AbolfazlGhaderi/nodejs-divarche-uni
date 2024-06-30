@@ -1,6 +1,7 @@
+import { UserEntity } from "./user.model";
+import { CarAdEntity } from "./car.ad.model";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { UserEntity } from "./user.model";
 
 @Entity(EntityNameEnum.City)
 export class CityEntity {
@@ -10,4 +11,6 @@ export class CityEntity {
   name: string;
   @OneToMany(() => UserEntity, (user) => user.city)
   user: UserEntity[];
+  @OneToMany(() => CarAdEntity, (car_Ad) => car_Ad.city)
+  car_ad: CarAdEntity[];
 }
