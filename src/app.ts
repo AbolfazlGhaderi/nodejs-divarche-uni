@@ -20,11 +20,12 @@
 
 import "reflect-metadata";
 import cors from "cors";
-import express, { Application, json, urlencoded } from "express";
+import  { Application, json, urlencoded } from "express";
 import { Server } from "http";
 import { Container } from "inversify";
 import { InversifyExpressServer } from "inversify-express-utils";
 import morgan from "morgan";
+import path from "path";
 // import { Logger, errorHandler, lastHandler, notFoundHandler } from "./core";
 
 import { bindings } from "./iOC/container";
@@ -32,10 +33,10 @@ import { logger } from "./core/logging/logger";
 
 //should import the controller to create metadata
 import "./modules/user/user.controller";
-import path from "path";
+import "./modules/ad/ad.controller";
+
 
 const view = path.join(__dirname,'../src/views')
-
 export class App {
   private readonly _container: Container;
   private readonly _port: number;
