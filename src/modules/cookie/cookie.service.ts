@@ -2,18 +2,30 @@ import crypto from "crypto";
 import { config } from "dotenv";
 config();
 
-export class CookieService {
-  private secret: string = `${process.env.COOKIE_SECRET}`;
+// Variables
+export const MAX_AGE = 1000 * 60; // should be Five Day
+export const IN_PRODUCTION = process.env.NODE_ENV === "production";
+//
 
-  // You can Enter Secret Key
-  constructor(secret?: string) {
+
+export class CookieService {
+  private secret: string 
+
+  // // you can use  this
+  // public CookieOptions = { 
+  //   maxAge: MAX_AGE,
+  //   httpOnly: true,
+  //   secure: IN_PRODUCTION,
+  //   sameSite: 'strict' // Or 'lax' Or 'none'
+  // };
+
+  constructor(secret: string) {
     if (secret) this.secret = secret;
   }
 
   sign(data: string): string {
     const hash = crypto.createHash("sha256").update(data).digest("hex");
 
-    // Create a HMAC (SHA-256) signature of the hash
     const hmac = crypto.createHmac("sha256", this.secret);
     hmac.update(hash);
     const signature = hmac.digest("hex");
@@ -28,7 +40,6 @@ export class CookieService {
     hmac.update(RecivedHash);
     const computedSignature = hmac.digest("hex");
 
-    // Return False or true
     return computedSignature === receivedSignature;
   }
 }
