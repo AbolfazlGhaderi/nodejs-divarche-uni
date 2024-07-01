@@ -1,5 +1,6 @@
 import { CityEntity } from "./city.entity";
 import { CarAdEntity } from "./car.ad.entity";
+import { SessionEntity } from "./session.entity";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
@@ -19,6 +20,9 @@ export class UserEntity {
   @ManyToOne(() => CityEntity, (city) => city.user, { nullable: false })
   @JoinColumn({ name: "city_id" })
   city: CityEntity;
+
+  @OneToMany(() => SessionEntity, (session) => session.user)
+  session: SessionEntity[];
 
   @CreateDateColumn()
   create_at: Date;
