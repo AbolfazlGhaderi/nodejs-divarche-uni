@@ -2,7 +2,6 @@ import { BaseHttpController, controller, httpGet, httpPost, request, requestBody
 import express from "express";
 import { inject } from "inversify";
 import { IOCTYPES } from "../../iOC/ioc.types";
-import { UserEntity } from '../../models/user.model';
 import { UserService } from "./user.service";
 
 @controller("/user")

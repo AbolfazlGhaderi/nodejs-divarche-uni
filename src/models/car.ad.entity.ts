@@ -1,5 +1,5 @@
-import { CityEntity } from "./city.model";
-import { UserEntity } from "./user.model";
+import { CityEntity } from "./city.entity";
+import { UserEntity } from "./user.entity";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 

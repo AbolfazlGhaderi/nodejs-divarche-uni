@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { CityEntity } from "../../models/city.model";
+import { CityEntity } from "../../models/city.entity";
 import { appDataSrc } from '../../core/app/app.dataSource';
 
 

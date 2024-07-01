@@ -1,5 +1,5 @@
-import { UserEntity } from "./user.model";
-import { CarAdEntity } from "./car.ad.model";
+import { UserEntity } from "./user.entity";
+import { CarAdEntity } from "./car.ad.entity";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 

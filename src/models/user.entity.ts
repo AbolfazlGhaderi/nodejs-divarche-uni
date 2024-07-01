@@ -1,5 +1,5 @@
-import { CityEntity } from "./city.model";
-import { CarAdEntity } from "./car.ad.model";
+import { CityEntity } from "./city.entity";
+import { CarAdEntity } from "./car.ad.entity";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 

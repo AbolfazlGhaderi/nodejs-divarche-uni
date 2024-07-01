@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { appDataSrc } from '../../core/app/app.dataSource';
-import { UserEntity } from '../../models/user.model';
+import { UserEntity } from '../../models/user.entity';
 
 
 class UserRepository extends Repository<UserEntity> {
