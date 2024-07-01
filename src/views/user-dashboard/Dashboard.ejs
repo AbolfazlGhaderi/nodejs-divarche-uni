@@ -1,0 +1,200 @@
+<%- include('../includes/user-dashboard/Head.ejs') %>
+    <style>
+
+
+    </style>
+
+    </head>
+
+    <body data-layout="detached" data-topbar="colored" class="text-white" style="background-color: #222831;">
+
+        <div class="container-fluid">
+            <!-- Begin page -->
+            <div id="layout-wrapper">
+
+                <!-- Header -->
+                <%- include('../includes/user-dashboard/Header.ejs') %>
+
+                    <!-- End Header -->
+
+                    <!-- Menu  -->
+                    <%- include('../includes/user-dashboard/Menu.ejs') %>
+
+                        <!-- End Menu  -->
+
+                        <!-- Main -->
+                        <div class="main-content" style="background-color: #222831;">
+
+                            <div class="page-content" style="background-color: #222831;">
+
+                                <!-- start page title -->
+                                <div class="row">
+                                    <div class="col-12" style="background-color: #222831;">
+                                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                                            <h2 class="page-title mb-0 " style="font-size: 20px;">داشبورد</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+
+                                <!-- درآمد ، سفارشات و.... -->
+                                <div class="row">
+
+
+                                    <div class="col-lg-6">
+                                        <div class="card" style="background-color: #31363F; border-radius: 20px;">
+                                            <div class="card-body"
+                                                style="background-color: #31363F; border-radius: 20px;">
+                                                <div class="row mb-1">
+                                                    <div class="px-3 text-white">
+                                                        <p class=" font-weight-bold mb-0 fontController" >شماره
+                                                            تماس شما</p>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class=" text-left">
+                                                    <div class="text-left px-3">
+                                                        <p class="primary-font text-right font-size-18 font-weight-bold">
+                                                            09100368361</p>
+                                                    </div>
+                                                </div>
+                                                <!-- <p class="mb-0 mt-n1"><span class="badge badge-soft-success mr-2"> 0.8% <i class="mdi mdi-arrow-up"></i> </span> از دوره قبلی</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="card" style="background-color: #31363F; border-radius: 20px;">
+                                            <div class="card-body"
+                                                style="background-color: #31363F; border-radius: 20px;">
+                                                <div class="row mb-1">
+                                                    <div class="px-3 text-white">
+                                                        <p class=" font-weight-bold mb-0 fontController" >تعداد
+                                                            آگهی های شما</p>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class=" text-left">
+                                                    <div class="text-left px-3">
+                                                        <p class="primary-font text-right font-size-18 font-weight-bold" >10
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!-- <p class="mb-0 mt-n1"><span class="badge badge-soft-success mr-2"> 0.8% <i class="mdi mdi-arrow-up"></i> </span> از دوره قبلی</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- end row -->
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card " style="background-color: #31363F; border-radius: 20px;">
+                                            <div class="card-body rounded-4"
+                                                style="background-color: #31363F; border-radius: 20px;">
+                                                <form action="#" method="post"
+                                                    enctype="application/x-www-form-urlencoded">
+
+                                                    <div class="row">
+
+                                                        <div class=" col-12 text-white">
+                                                            <p for="formname" class=" fontController font-weight-bold ">نام و نام
+                                                                خانوادگی</p>
+                                                            <input type="text"
+                                                                class=" inputDesign form-control form-control-lg text-white font-weight-bold font-size-17 "
+                                                                id="name" name="name" required>
+                                                        </div>
+
+                                                    </div>
+                                                    <hr>
+
+                                                    <div class="row">
+
+
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="form-group col-md-12 text-white">
+                                                            <label for="description"
+                                                                class="fontController font-weight-bold">آدرس</label>
+                                                            <textarea id="description"
+                                                                class="form-control form-control-lg  text-white inputDesign  font-weight-bold "
+                                                                name="description" placeholder="اصفهان،خیابان محمدیه،کوچه امیریه" rows="6"></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary fontController">ویرایش
+                                                        اطلاعات</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Footer -->
+
+                            <%- include('../includes/user-dashboard/Footer.ejs') %>
+                        </div>
+
+
+            </div>
+
+
+        </div>
+        <!-- end container-fluid -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title px-3 py-4">
+                    <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                    <h5 class="m-0">تنظیمات</h5>
+                </div>
+
+                <!-- Settings -->
+                <hr class="mt-0">
+                <h6 class="text-center mb-0">انتخاب طرح</h6>
+
+                <div class="p-4">
+                    <div class="mb-2">
+                        <img src="#" class="img-fluid img-thumbnail" alt="">
+                    </div>
+                    <div class="custom-control custom-switch mb-3">
+                        <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked>
+                        <label class="custom-control-label" for="light-mode-switch">طرح روشن</label>
+                    </div>
+
+                    <div class="mb-2">
+                        <img src="#" class="img-fluid img-thumbnail" alt="">
+                    </div>
+                    <div class="custom-control custom-switch mb-3">
+                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch"
+                            data-bsstyle="/assets/css/bootstrap-dark.min.css" data-appstyle="/assetscss/app-dark.css">
+                        <label class="custom-control-label" for="dark-mode-switch">طرح تیره</label>
+                    </div>
+                </div>
+
+            </div>
+            <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+
+    </body>
+
+    <%- include('../includes/user-dashboard/End.ejs') %>
+
+        </html>

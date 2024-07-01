@@ -23,6 +23,7 @@ import path from "path";
 import "reflect-metadata";
 import morgan from "morgan";
 import { Server } from "http";
+import express from 'express';
 import { Container } from "inversify";
 import cookieParser from "cookie-parser";
 import { Application, json, urlencoded } from "express";
@@ -76,6 +77,6 @@ export class App {
     app.use(cookieParser())
     app.use(morgan("dev"));
     app.use(cors());
-    // app.use("/assets", express.static(path.join(__dirname,'../public')))
+    app.use("/assets", express.static(path.join(__dirname,'../assets')))
   }
 }
