@@ -30,8 +30,6 @@ import { InversifyExpressServer } from "inversify-express-utils";
 
 import { bindings } from "./iOC/container";
 import { logger } from "./core/logging/logger";
-import { SessionConfig } from "./core/configs/session.config";
-import { CheckSession } from "./core/middlewares/Session.middlewares";
 
 //should import the controller to create metadata
 import "./modules/ad/ad.controller";
@@ -76,8 +74,6 @@ export class App {
     app.use(urlencoded({ extended: false }));
     app.use(morgan("dev"));
     app.use(cors());
-    app.use(SessionConfig);
-    app.use(CheckSession())
     // app.use("/assets", express.static(path.join(__dirname,'../public')))
   }
 }

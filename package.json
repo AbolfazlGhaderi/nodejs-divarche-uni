@@ -4,7 +4,6 @@
   "description": "Divarche is a project for university that is a very small version of the Divar website",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch '*.ts' --exec 'node -r ts-node/register --env-file=.env' ./src/server.ts",
     "build": "tsc && cp -r ./src/views ./dist",
     "start": "NODE_ENV=production node ./dist/server.js",
@@ -13,7 +12,6 @@
   "author": "Abolfazl Ghaderi",
   "license": "MIT",
   "dependencies": {
-    "@types/express-session": "^1.17.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -22,7 +20,6 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-rate-limit": "^7.2.0",
-    "express-session": "^1.18.0",
     "helmet": "^7.1.0",
     "inversify": "^6.0.2",
     "inversify-express-utils": "^6.4.6",

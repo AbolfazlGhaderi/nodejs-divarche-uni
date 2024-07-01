@@ -9,8 +9,8 @@ export class UserService implements IUserService {
   @inject(IOCTYPES.UserRepository) private userRepository: UserRepository;
 
   async getUsers(req: express.Request): Promise<any> {
-    console.log(req.session.user);
-        const user = await this.userRepository.find();
+    
+    const user = await this.userRepository.find();
 
     return user;
   }
