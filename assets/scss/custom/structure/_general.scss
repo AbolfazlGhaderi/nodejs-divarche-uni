@@ -1,0 +1,24 @@
+body{
+	font-family: $font-family-base;
+	direction: rtl;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $headings-font-family;
+	line-height: 1.85;
+}
+
+p,
+.line-height-p,
+address {
+	line-height: 2;
+}
+
+.line-height-h {
+	line-height: 1.85;
+}
+
+code {
+	direction: ltr;
+	display: inline-block;
+}

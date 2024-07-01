@@ -1,0 +1,20 @@
+// 
+// _forms.scss
+// 
+
+textarea.form-control {
+    line-height: 1.85;
+}
+
+.input-group-text i:before {
+	vertical-align: top;
+}
+
+select.form-control {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.custom-file-label::after {
+	content: $custom-file-text;
+}

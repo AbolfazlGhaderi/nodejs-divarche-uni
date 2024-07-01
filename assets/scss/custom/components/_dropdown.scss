@@ -1,0 +1,48 @@
+// 
+// _dropdown.scss
+// 
+
+.dropdown-menu.show {
+  left: auto !important;
+  right: 0;
+}
+
+.dropdown-menu-right.show {
+    left: 0 !important;
+    right: auto !important;
+}
+
+.dropdown-megamenu.show {
+    right: 20px!important;
+    left: 20px!important;
+}
+
+.dropdown-menu[x-placement^=right].show,
+.dropdown-menu[x-placement^=left].show {
+    left: 0!important;
+    right: auto!important;
+}
+
+.dropdown-menu[x-placement^=right].show {
+    margin-right: 0;
+    margin-left: .125rem;
+}
+
+.dropdown-menu[x-placement^=left].show {
+    margin-left: 0;
+    margin-right: .125rem;
+}
+
+.dropdown-menu[x-placement^=top].show {
+	bottom: 100% !important;
+	top: auto !important;
+	transform: none !important;
+}
+
+.dropdown-item {
+	line-height: 1.6;
+}
+
+.dropdown-item .badge {
+	margin-top: 3px;
+}

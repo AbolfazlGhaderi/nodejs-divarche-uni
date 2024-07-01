@@ -1,0 +1,185 @@
+//
+// Datepicker
+//
+
+.datepicker {
+	border: 1px solid $gray-100;
+	padding: 8px;
+	z-index: 999 !important;
+	right: auto;
+	direction: rtl;
+
+	table {
+		tr {
+			th {
+				font-weight: 500;
+
+				&.next,
+				&.prev {
+					font-family: arial, $font-family-base;
+				}
+			}
+
+			td {
+
+				&.active,
+				&.active:hover,
+				.active.disabled,
+				&.active.disabled:hover,
+				&.today,
+				&.today:hover,
+				&.today.disabled,
+				&.today.disabled:hover,
+				&.selected,
+				&.selected:hover,
+				&.selected.disabled,
+				&.selected.disabled:hover {
+					background-color: $primary !important;
+					background-image: none;
+					box-shadow: none;
+					color: $white !important;
+				}
+
+				&.day.focused,
+				&.day:hover,
+				span.focused,
+				span:hover {
+					background: $gray-200;
+				}
+
+				&.new,
+				&.old,
+				span.new,
+				span.old {
+					color: $gray-500;
+					opacity: 0.6;
+				}
+
+				&.range,
+				&.range.disabled,
+				&.range.disabled:hover,
+				&.range:hover {
+					background-color: $gray-300;
+				}
+
+				span {
+					float: right;
+
+					&.active:hover {
+						background: $primary;
+					}
+				}
+			}
+		}
+
+		&.table-condensed {
+
+			>thead>tr>th,
+			>tbody>tr>td {
+				padding: 6px 8px;
+			}
+		}
+	}
+
+	.datepicker-switch:hover,
+	.next:hover,
+	.prev:hover,
+	tfoot tr th:hover,
+	table tr td.day.focused,
+	table tr td.day:hover,
+	table tr td span.focused,
+	table tr td span:hover {
+		background: $datepicker-hover;
+	}
+
+	&.datepicker-dropdown {
+
+		&.datepicker-orient-top {
+			&:before {
+				border-top-color: $gray-100;
+			}
+			&:after {
+				border-top-color: $datepicker-background;
+			}
+		}
+		&.datepicker-orient-bottom {
+			&:before {
+				border-bottom-color: $gray-100;
+			}
+			&:after {
+				border-bottom-color: $datepicker-background;
+			}
+		}
+	}
+}
+
+.ui-datepicker {
+	color: inherit;
+	background-color: $datepicker-background;
+	border: 1px solid $datepicker-border;
+
+	.ui-state-default {
+		background: transparent;
+		color: inherit;
+	}
+
+	td:not(.ui-state-disabled) .ui-state-default:hover {
+		background: $datepicker-hover;
+	}
+
+	.ui-datepicker-today .ui-state-default {
+		background: $datepicker-today;
+	}
+
+	.ui-state-default.ui-state-active {
+		background: $primary !important;
+		color: #fff !important;
+	}
+
+	.ui-datepicker-header .btn.ui-state-hover {
+		background: transparent;
+	}
+
+	.ui-datepicker-header {
+		border-bottom: 1px solid $datepicker-border;
+	}
+
+	.ui-datepicker-buttonpane {
+		background: transparent;
+		border-top: 1px solid $datepicker-border;
+
+		.btn {
+			color: inherit;
+
+			&:hover {
+				background: $datepicker-hover;
+			}
+		}
+	}
+
+	.ui-priority-secondary,
+	.ui-widget-content .ui-priority-secondary,
+	.ui-widget-header .ui-priority-secondary {
+		opacity: 0.6;
+	}
+
+	.ui-state-disabled,
+	.ui-widget-content .ui-state-disabled,
+	.ui-widget-header .ui-state-disabled {
+		opacity: 0.2;
+	}
+
+	select {
+		color: inherit;
+		background-color: $datepicker-select;
+		border: 1px solid $datepicker-border;
+		outline: none;
+	}
+
+	td {
+		span, a {
+			padding-top: 6px;
+			padding-bottom: 6px;
+		}
+	}
+}
