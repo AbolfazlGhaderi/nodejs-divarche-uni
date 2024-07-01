@@ -6,6 +6,8 @@ import { UserRepository, createUserRepository } from "../modules/user/user.repos
 import { cityRepository, createCityRepository } from "../modules/ad/city.repository";
 import { IAdService } from "../modules/ad/interface/ad.service.interface";
 import { AdService } from "../modules/ad/ad.service";
+import { AuthService } from "../modules/auth/auth.service";
+import { IAuthService } from "../modules/auth/interface/auth.service.interface";
 
 const bindings = new AsyncContainerModule(async (bind) => {
   // bind(IOCTYPES.DataSource).toDynamicValue(createDataSource);
@@ -17,6 +19,7 @@ const bindings = new AsyncContainerModule(async (bind) => {
   //services
   bind<IUserService>(IOCTYPES.UserService).to(UserService);
   bind<IAdService>(IOCTYPES.AdService).to(AdService);
+  bind<IAuthService>(IOCTYPES.AuthService).to(AuthService);
 });
 
 export { bindings };

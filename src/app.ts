@@ -24,9 +24,9 @@ import "reflect-metadata";
 import morgan from "morgan";
 import { Server } from "http";
 import { Container } from "inversify";
+import cookieParser from "cookie-parser";
 import { Application, json, urlencoded } from "express";
 import { InversifyExpressServer } from "inversify-express-utils";
-import cookieParser from "cookie-parser";
 // import { Logger, errorHandler, lastHandler, notFoundHandler } from "./core";
 
 import { bindings } from "./iOC/container";
@@ -34,8 +34,8 @@ import { logger } from "./core/logging/logger";
 
 //should import the controller to create metadata
 import "./modules/ad/ad.controller";
+import "./modules/auth/auth.controller"
 import "./modules/user/user.controller";
-
 
 // Variables
 const view = path.join(__dirname, "../src/views");
