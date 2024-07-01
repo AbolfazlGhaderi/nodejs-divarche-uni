@@ -26,6 +26,7 @@ import { Server } from "http";
 import { Container } from "inversify";
 import { Application, json, urlencoded } from "express";
 import { InversifyExpressServer } from "inversify-express-utils";
+import cookieParser from "cookie-parser";
 // import { Logger, errorHandler, lastHandler, notFoundHandler } from "./core";
 
 import { bindings } from "./iOC/container";
@@ -72,6 +73,7 @@ export class App {
     app.disable("x-powered-by");
     app.use(json());
     app.use(urlencoded({ extended: false }));
+    app.use(cookieParser())
     app.use(morgan("dev"));
     app.use(cors());
     // app.use("/assets", express.static(path.join(__dirname,'../public')))

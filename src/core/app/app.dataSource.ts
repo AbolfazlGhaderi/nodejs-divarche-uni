@@ -12,7 +12,7 @@ export const appDataSrc = new DataSource({
   password: process.env.DB_PASS,
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : undefined,
   database: process.env.DB_NAME,
-  entities: [join(process.cwd(), mainDir, "models", "**/*.model{.ts,.js}")],
+  entities: [join(process.cwd(), mainDir, "models", "**/*.entity{.ts,.js}")],
   //   migrations: [join(process.cwd(), mainDir, "models", "migrations", "**/**{.ts,.js}")],
   synchronize: true,
   logging: false,
