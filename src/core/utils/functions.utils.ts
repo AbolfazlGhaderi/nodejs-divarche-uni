@@ -1,5 +1,11 @@
+import { logger } from "../logging/logger";
+
 export function CheckEnvVariables(variable: string | undefined, section: string) {
-    console.log("object");
-  if (!variable || variable === '') throw new Error(`Env Variable ${section} Not Found`);
+  if (!variable || variable === '') {
+    logger.error(`Env Variable ${section} Not Found`, { context: "CheckEnvVariables" })
+    throw new Error(`Env Variable ${section} Not Found`);
+  }
+
+  logger.info(`Env Variable { ${section.toUpperCase()} } Found`, { context: "CheckEnvVariables" })
   return variable;
 }

@@ -1,7 +1,7 @@
 import NodeCache from 'node-cache';
 import crypto from 'crypto';
 
-export abstract class OtpService {
+export class OtpService {
   private CACHE: NodeCache = new NodeCache();
 
   // Save Otp Code
@@ -11,12 +11,12 @@ export abstract class OtpService {
    * @param value
    * @param ttl
    */
-  async SetOtpLogin(key: string, value: string, ttl: number) {
+  async SetOtp(key: string, value: string, ttl: number) {
     this.CACHE.set(key, value, ttl);
   }
 
   // Get Otp Code
-  async GetOtpLogin(key: string) {
+  async GetOtp(key: string) {
     return this.CACHE.get(key);
   }
 

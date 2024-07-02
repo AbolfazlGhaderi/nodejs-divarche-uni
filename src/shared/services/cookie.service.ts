@@ -20,7 +20,7 @@ export class CookieService {
   // };
 
   constructor(secret: string) {
-    if (secret) this.secret = secret;
+    this.secret = secret;
   }
 
   sign(data: string): string {
@@ -42,4 +42,6 @@ export class CookieService {
 
     return computedSignature === receivedSignature;
   }
+
+
 }

@@ -15,18 +15,24 @@ import { TokenService } from "../../shared/services/token.service";
 export class AuthService implements IAuthService {
   private cokieService : CookieService = new CookieService(CheckEnvVariables(process.env.COOKIE_SECRET,'Cookie Secret'));
   private tokenService:TokenService = new TokenService(CheckEnvVariables(process.env.JWT_SECRET,'JWT Secret'));
+  private otpService: OtpService = new OtpService()
+
   @inject(IOCTYPES.UserService) private userService:UserService ;
   @inject(IOCTYPES.UserRepository) private userRepository:UserRepository;
   @inject(IOCTYPES.SessionRepository) private sessionRepository:SessionRepository;
-  private otpService: OtpService = new OtpService()
 
   async LoginPost(loginData : LoginDto, req:express.Request, res:express.Response) {
 
-    const {checkAccept,phoneNumber} = loginData
+    const {checkAccept,phoneNumber} = loginData ;
 
+    if(checkAccept !== 'on')
+    {
+      req.flash('ValidationError', 'لطفا در وارد کردن اطلاعات دقت نمایید ');
+      return res.redirect('/auth/login')
+    }
 
     
-  //  return res.render('./check-otp', { pageTitle: 'otp - DivarChe'})
+   return res.render('./check-otp', { pageTitle: 'otp - DivarChe'})
 
   }
 }
