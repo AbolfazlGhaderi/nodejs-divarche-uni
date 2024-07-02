@@ -1,5 +1,5 @@
-import NodeCache from 'node-cache';
 import crypto from 'crypto';
+import NodeCache from 'node-cache';
 
 export class OtpService {
   private CACHE: NodeCache = new NodeCache();
@@ -18,6 +18,10 @@ export class OtpService {
   // Get Otp Code
   async GetOtp(key: string) {
     return this.CACHE.get(key);
+  }
+
+  async DelOtp(key: string) {
+    return this.CACHE.del(key);
   }
 
   // Generate Otp Code

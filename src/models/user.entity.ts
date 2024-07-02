@@ -17,7 +17,7 @@ export class UserEntity {
   @OneToMany(() => CarAdEntity, (car_ad) => car_ad.user)
   car_ads: CarAdEntity[];
 
-  @ManyToOne(() => CityEntity, (city) => city.user, { nullable: false })
+  @ManyToOne(() => CityEntity, (city) => city.user, { nullable: true })
   @JoinColumn({ name: "city_id" })
   city: CityEntity;
 

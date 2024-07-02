@@ -26,13 +26,13 @@
                         class="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-white font-vazirmatn text-center mb-12">
                         تایید کد ورود
                     </h1>
-                    <form class="space-y-4 md:space-y-6 " action="#">
+                    <form class="space-y-4 md:space-y-6 " action="/auth/check-otp" method="post" enctype="application/x-www-form-urlencoded">
 
                         <label for="website-admin"
                             class="block mb-2 text-md font-bold text-white max-sm:text-[14px]">کد تایید را وارد کنید 
                         </label>
                         <div class="flex shadow-xl text-white" dir="ltr">
-                            <input type="text" id="phoneNumber"
+                            <input type="text" id="otpCode" name="otpCode"
                                 class="bg-[#2c3036]  text-white border-[#2c3036] rounded-lg  flex-1 min-w-0 w-full text-sm p-2.5 text-center"
                                 placeholder="*****" minlength="5" maxlength="5" required>
                         </div>

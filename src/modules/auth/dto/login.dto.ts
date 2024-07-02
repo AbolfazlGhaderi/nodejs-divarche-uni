@@ -1,4 +1,4 @@
-import { IsMobilePhone, IsNotEmpty, IsNumberString, IsPhoneNumber, IsString } from "class-validator";
+import { IsMobilePhone, IsNotEmpty, IsNumberString, Length, IsString } from "class-validator";
 
 export class LoginDto{
     @IsNotEmpty()
@@ -9,4 +9,11 @@ export class LoginDto{
     @IsNotEmpty()
     @IsString()
     checkAccept:string
+}
+
+
+export class LoginCheckOtpDto {
+  @IsNumberString()
+  @Length(5, 5)
+  otpCode: string;
 }

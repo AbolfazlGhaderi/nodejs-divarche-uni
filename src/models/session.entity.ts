@@ -7,10 +7,10 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn, CreateDa
 export class SessionEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
-  @Column({ nullable: false, unique: true })
+  @Column({ nullable: false, unique: true,length: 300 })
   value: string;
   @Column({ nullable: false })
-  expire_at: Date;
+  expire_at: string;
   @Column({ nullable: false, default: true })
   is_valid: boolean;
   @ManyToOne(() => UserEntity, (user) => user.session, { nullable: false })

@@ -1,6 +1,4 @@
 export enum CookieNameEnum {
-    
-    OtpToken = 'OTPToken',
-
-
+  OtpToken = 'OTPToken',
+  Session = 'Session-UID',
 }

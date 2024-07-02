@@ -1,3 +1,4 @@
+import { randomBytes } from "crypto";
 import { logger } from "../logging/logger";
 
 export function CheckEnvVariables(variable: string | undefined, section: string) {
@@ -8,4 +9,8 @@ export function CheckEnvVariables(variable: string | undefined, section: string)
 
   logger.info(`Env Variable { ${section.toUpperCase()} } Found`, { context: "CheckEnvVariables" })
   return variable;
+}
+
+export function GenerateRandomByte(size: number) {
+  return randomBytes(size).toString('hex');
 }

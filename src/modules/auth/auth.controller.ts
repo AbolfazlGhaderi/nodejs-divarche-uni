@@ -1,6 +1,6 @@
 import { inject } from 'inversify';
 import express, { Request } from 'express';
-import { LoginDto } from './dto/login.dto';
+import { LoginCheckOtpDto, LoginDto } from './dto/login.dto';
 import { AuthService } from './auth.service';
 import { IOCTYPES } from '../../iOC/ioc.types';
 import { ValidationMiddleware } from '../../core/middlewares/validator.middleware';
@@ -10,23 +10,32 @@ import { BaseHttpController, controller, httpGet, httpPost, request, requestBody
 export class AuthController extends BaseHttpController {
   @inject(IOCTYPES.AuthService) private authService: AuthService;
 
+  // Login ==>
   @httpGet('/login')
   async GetLogin(@request() req: Request, @response() res: express.Response) {
-    res.render('./login', {
+
+    return res.render('./login', {
       pageTitle: 'Login - DivarChe',
       validationError: req.flash('ValidationError'),
+      otpError: req.flash('otpError'),
     });
   }
 
   @httpPost('/login', ValidationMiddleware.validateInput(LoginDto, '/auth/login'))
-  async PostLogin(@request() req: express.Request, @requestBody() loginDto: LoginDto, @response() res: express.Response) {
+  async LoginPost(@request() req: express.Request, @requestBody() loginDto: LoginDto, @response() res: express.Response) {
     return await this.authService.LoginPost(loginDto, req, res);
   }
 
-  // @httpGet("/otp")
-  // test2(@response() res: express.Response) {
-  //   res.render('./check-otp',{
-  //     pageTitle:'checkOtp - DivarChe',
-  //   })
-  // }
+  // <=== Login
+
+  // Check Otp ===> 
+
+
+  @httpPost('/check-otp', ValidationMiddleware.validateInput(LoginCheckOtpDto, '/auth/login')) 
+  async LoginCheckOtp(@request() req: express.Request, @requestBody() loginCheckOtpDto: LoginCheckOtpDto, @response() res: express.Response) {
+    return await this.authService.LoginCheckOtp(loginCheckOtpDto,req,res)
+  }
+
+
+  // <=== Check Otp
 }
