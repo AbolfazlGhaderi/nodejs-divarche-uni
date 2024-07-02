@@ -9,6 +9,16 @@ export class AuthController extends BaseHttpController {
 
   @httpGet("/login")
   test(@response() res: express.Response) {
-    res.send("test");
+    res.render('./login',{
+      pageTitle:'Login - DivarChe'
+    })
+
+  }
+
+  @httpGet("/otp")
+  test2(@response() res: express.Response) {
+    res.render('./check-otp',{
+      pageTitle:'checkOtp - DivarChe',
+    })
   }
 }

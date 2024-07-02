@@ -1,0 +1,72 @@
+
+<%- include('./includes/Head.ejs') %>
+
+</head>
+
+<body dir="rtl" bgcolor="#222831" class=" justify-center items-center">
+    <div class="h-auto w-auto justify-center items-center ">
+        <div class="flex flex-col items-center justify-center px-6   mx-auto h-screen">
+            <a href="/" class="flex items-center mb-6 text-2xl font-semibold text-white">
+                <p class="text-4xl">Divar<span class="text-orange-500 font-bold">CHE</span></p>
+
+            </a>
+            <div class="w-full bg-[#31363F] shadow rounded-xl mt-10 max-w-md p-0 font-vazirmatn">
+                <div class=" space-y-12 p-10 ">
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-white font-vazirmatn text-center mb-12">
+                        ورود به سایت
+                    </h1>
+                    <form class="space-y-4 md:space-y-6 " action="#">
+
+                        <label for="website-admin"
+                            class="block mb-2 text-md font-bold text-white max-sm:text-[14px]">شماره
+                            موبایل</label>
+                        <div class="flex shadow-xl text-white" dir="ltr">
+                            <span class="inline-flex items-center px-3 text-sm text-white bg-[#2c3036]  rounded-s-md ">
+                                +98
+                            </span>
+                            <input type="text" id="phoneNumber"
+                                class="bg-[#2c3036]  text-white border-[#2c3036] rounded-lg rounded-l-none flex-1 min-w-0 w-full text-smborder p-2.5 "
+                                placeholder="9123456789" minlength="10" maxlength="10" required>
+                        </div>
+
+
+                        <div class="flex items-start pt-4 pb-4">
+                            <div class="flex items-center h-5">
+                                <input id="terms" aria-describedby="terms" type="checkbox" name="checkAccept"
+                                    class="w-4 h-4 border border-gray-700 rounded  focus:ring-3 focus:ring-primary-300 bg-gray-600"
+                                    required="">
+                            </div>
+                            <div class="mr-3 text-[15px] font-vazirmatn text-white max-sm:text-[13px]">
+                                <p> با تمام <a href="#" class="border-b border-orange-500"> شرایط و مقررات</a><span
+                                        class="text-[#]"></span> موافق هستم </p>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white bg-[#393d43] shadow-xl  border-solid border-2 border-violet-500/0  hover:border-violet-500/70 transition duration-300  font-bold font-vazirmatn rounded-lg text-sm px-5 py-2.5 text-center ">
+                            ورود به اکانت</button>
+
+                    </form>
+                    
+                    <!--  Google  account -->
+
+                    <!-- <a href="#"
+                        class="justify-center flex w-full text-white bg-[#393d43] shadow-xl  border-solid border-2 border-violet-500/0  hover:border-red-500/70 transition duration-300  font-bold font-vazirmatn rounded-lg text-sm px-5 py-2.5 text-center ">
+
+                        ورود از طریق اکانت گوگل
+                        <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 18 19">
+                            <path fill-rule="evenodd"
+                                d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
