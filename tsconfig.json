@@ -4,6 +4,8 @@
     "module": "Node16",
     "lib": ["es2023"],
     // "typeRoots": ["node_modules/@types","./src/common/types"],
+    "typeRoots": ["./node_modules/@types", "./src/common/types"],
+    // "types": ["node", "./src/common/types"],
     "moduleResolution": "Node16",
     "rootDir": "./src",
     "outDir": "./dist",
@@ -26,6 +28,10 @@
     // "sourceMap": true,
     // "declaration": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/**/*"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "files": true
+  }
+
 }

@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { config } from 'dotenv';
+import { logger } from '../../core/logging/logger';
 config();
 
 // Variables
@@ -14,6 +15,7 @@ type TSign = {
   value: string;
 };
 
+type TVerify = { status: boolean; hash: string };
 //
 
 export class CookieService {
@@ -45,13 +47,24 @@ export class CookieService {
     };
   }
 
-  verify(data: string): boolean {
-    if (data === undefined) return false;
-    const [RecivedHash, receivedSignature] = data.split('.');
-    const hmac = crypto.createHmac('sha256', this.secret);
-    hmac.update(RecivedHash);
-    const computedSignature = hmac.digest('hex');
+  verify(data: string): TVerify {
+    if (data === undefined) return { status: false, hash: '' };
+    try {
+      const [recivedHash, receivedSignature] = data.split('.');
+      const hmac = crypto.createHmac('sha256', this.secret);
+      hmac.update(recivedHash);
+      const computedSignature = hmac.digest('hex');
 
-    return computedSignature === receivedSignature;
+      if (computedSignature !== receivedSignature) return { status: false, hash: '' };
+
+      return {
+        status: true,
+        hash: recivedHash,
+      };
+      
+    } catch (error) {
+      logger.error('Error Cooki/Session Verification', error);
+      return { status: false, hash: '' };
+    }
   }
 }
