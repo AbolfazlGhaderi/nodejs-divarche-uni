@@ -1,18 +1,18 @@
-import express,{Request} from "express";
 import { inject } from "inversify";
-import { IOCTYPES } from "../../iOC/ioc.types";
-import { BaseHttpController, controller, httpGet, httpPost, request, requestBody, response } from "inversify-express-utils";
-import { ValidationMiddleware } from "../../core/middlewares/validator.middleware";
+import express,{Request} from "express";
 import { LoginDto } from "./dto/login.dto";
-import { isMobilePhone } from "class-validator";
+import { AuthService } from "./auth.service";
+import { IOCTYPES } from "../../iOC/ioc.types";
+import { ValidationMiddleware } from "../../core/middlewares/validator.middleware";
+import { BaseHttpController, controller, httpGet, httpPost, request, requestBody, response } from "inversify-express-utils";
 
 @controller("/auth")
 export class AuthController extends BaseHttpController {
-  // @inject(IOCTYPES.UserService) private userService:UserService ;
+ @inject(IOCTYPES.AuthService) private authService:AuthService
 
   @httpGet("/login")
   async GetLogin(@request() req:Request,@response() res: express.Response) {
-    
+      
     res.render('./login',{
       pageTitle:'Login - DivarChe',
       validationError:req.flash('ValidationError')

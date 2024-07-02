@@ -5,6 +5,7 @@ export const IOCTYPES = {
 
 
   UserRepository: Symbol.for("UserRepository"),
-  CityRepository: Symbol.for("CityRepository")
+  CityRepository: Symbol.for("CityRepository"),
+  SessionRepository: Symbol.for("SessionRepository"),
 
 };
