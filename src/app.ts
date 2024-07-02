@@ -24,6 +24,8 @@ import "reflect-metadata";
 import morgan from "morgan";
 import { Server } from "http";
 import express from 'express';
+import flash from 'connect-flash'
+import Session from 'express-session'
 import { Container } from "inversify";
 import cookieParser from "cookie-parser";
 import { Application, json, urlencoded } from "express";
@@ -37,6 +39,7 @@ import { logger } from "./core/logging/logger";
 import "./modules/ad/ad.controller";
 import "./modules/auth/auth.controller"
 import "./modules/user/user.controller";
+import bodyParser from "body-parser";
 
 // Variables
 const view = path.join(__dirname, "../src/views");
@@ -73,8 +76,10 @@ export class App {
     app.set("views", view);
     app.disable("x-powered-by");
     app.use(json());
-    app.use(urlencoded({ extended: false }));
+    app.use(express.urlencoded({ extended: false }));
     app.use(cookieParser())
+    app.use(Session({ secret:'sdssdcscsdcscsdcsdcscsocweowc5wc4we5de',cookie: { maxAge: 2000 }}));
+    app.use(flash())
     app.use(morgan("dev"));
     app.use(cors());
     app.use("/assets", express.static(path.join(__dirname,'../assets')))
