@@ -10,16 +10,21 @@ export class TokenService {
     this.Secret = secret;
   }
 
-  sign(data: string): string {
-    return JWT.sign({ sub: data }, this.Secret, { expiresIn: '2m' });
+  /**
+   *  ExpiresIn: seconds
+   * @param data 
+   * @param expiresIn 
+   * @returns 
+   */
+  sign(data: string | object, expiresIn : string | number | undefined): string {
+    return JWT.sign(data, this.Secret, { expiresIn: expiresIn });
   }
 
   verify(token: string) : false | JwtPayload | string{
     try{
-
       return JWT.verify(token, this.Secret);
-
     }
+
     catch(error){
         logger.error("Error JWT Verification", error);
         return false
