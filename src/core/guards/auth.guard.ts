@@ -26,9 +26,10 @@ class Guard {
       if (!cookie) {
         return res.redirect('/auth/login');
       }
-
+      
       const cookieVerified = this.cookieService.verify(cookie);
       if (cookieVerified.status === false) {
+        res.clearCookie(CookieNameEnum.Session);
         return res.redirect('/auth/login');
       }
 
@@ -38,14 +39,37 @@ class Guard {
       });
 
       if (!session) {
+        res.clearCookie(CookieNameEnum.Session);
         return res.redirect('/auth/login');
       }
 
-      req.user = session.user;
+      if(this.cookieService.checkExpireCookie(+session.expire_at)){
+        await this.cookieService.ExpiringSession(session)
+        res.clearCookie(CookieNameEnum.Session);
+        return res.redirect('/auth/login');
+      }
+
+      req.userSession = session;
 
       next();
     };
   }
+
+  CheckCookie() {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      const cookie = req.cookies[CookieNameEnum.Session];
+      if(cookie) {
+        return res.redirect('/dashboard')
+
+      }
+      
+     
+      next();
+    };
+  }
+
+
+
 }
 
 const instance = Guard.get();

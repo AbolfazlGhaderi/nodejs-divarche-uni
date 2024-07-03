@@ -1,10 +1,10 @@
 import { Express } from "express";
-import { UserEntity } from "../../models/user.entity";
+import { SessionEntity } from "../../models/session.entity";
 
 declare global {
     namespace Express {
         export interface Request {
-            user?: UserEntity;
+            userSession?: SessionEntity;
         }
     }
 }

@@ -150,7 +150,7 @@ export class AuthService implements IAuthService {
         sameSite: 'lax',
       });
 
-      return res.redirect('/user');
+      return res.redirect('/dashboard');
       
     } catch (error) {
 

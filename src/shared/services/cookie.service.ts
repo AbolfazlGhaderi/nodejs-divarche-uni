@@ -1,7 +1,9 @@
 import crypto from 'crypto';
 import { config } from 'dotenv';
-import { logger } from '../../core/logging/logger';
 config();
+import { logger } from '../../core/logging/logger';
+import { SessionEntity } from '../../models/session.entity';
+import { SessionRepository } from '../../modules/auth/session.repository';
 
 // Variables
 export const MAX_AGE = 1000 * 60; // should be Five Day
@@ -19,6 +21,8 @@ type TVerify = { status: boolean; hash: string };
 //
 
 export class CookieService {
+  private sessionRepository: SessionRepository = new SessionRepository();
+
   private secret: string;
 
   // // you can use  this
@@ -61,10 +65,24 @@ export class CookieService {
         status: true,
         hash: recivedHash,
       };
-      
     } catch (error) {
       logger.error('Error Cooki/Session Verification', error);
       return { status: false, hash: '' };
     }
+  }
+
+  public checkExpireCookie(sessionExpire: number) {
+    const now = Date.now();
+
+    if (now >= sessionExpire) {
+      return true;
+    }
+
+    return false;
+  }
+
+  async ExpiringSession(sessionData: SessionEntity) {
+    sessionData.is_valid = false;
+    await this.sessionRepository.save(sessionData);
   }
 }

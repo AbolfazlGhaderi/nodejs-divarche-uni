@@ -5,13 +5,13 @@ import { IOCTYPES } from '../../iOC/ioc.types';
 import { Guard } from '../../core/guards/auth.guard';
 import { BaseHttpController, controller, httpGet, request, response } from 'inversify-express-utils';
 
-@controller('/user')
+@controller('', Guard.AuthGuard())
 export class UserController extends BaseHttpController {
   @inject(IOCTYPES.UserService) private userService: UserService;
 
-  @httpGet('/', Guard.AuthGuard())
+  @httpGet('/dashboard')
   async testView(@request() req:express.Request,@response() res: express.Response) {
-    console.log(req.user);
+    // console.log(req.userSession);
     res.render('./user-dashboard/Dashboard', {
       pageTitle: 'Dashboard - DivarChe',
     });
