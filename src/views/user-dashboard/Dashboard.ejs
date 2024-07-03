@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <div class="col-12" style="background-color: #222831;">
                                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                                            <h2 class="page-title mb-0 " style="font-size: 20px;">داشبورد</h2>
+                                            <h2 class="page-title mb-0 " style="font-size: 22px;">داشبورد</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                                 style="background-color: #31363F; border-radius: 20px;">
                                                 <div class="row mb-1">
                                                     <div class="px-3 text-white">
-                                                        <p class=" font-weight-bold mb-0 fontController" >شماره
+                                                        <p class=" font-weight-bold mb-0 fontController">شماره
                                                             تماس شما</p>
 
                                                     </div>
@@ -55,8 +55,12 @@
                                                 </div>
                                                 <div class=" text-left">
                                                     <div class="text-left px-3">
-                                                        <p class="primary-font text-right font-size-18 font-weight-bold">
-                                                            <span dir="ltr"><%= userData.phone%></span></p>
+                                                        <p
+                                                            class="primary-font text-right font-size-18 font-weight-bold">
+                                                            <span dir="ltr">
+                                                                <%= userData.phone%>
+                                                            </span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <!-- <p class="mb-0 mt-n1"><span class="badge badge-soft-success mr-2"> 0.8% <i class="mdi mdi-arrow-up"></i> </span> از دوره قبلی</p> -->
@@ -70,7 +74,7 @@
                                                 style="background-color: #31363F; border-radius: 20px;">
                                                 <div class="row mb-1">
                                                     <div class="px-3 text-white">
-                                                        <p class=" font-weight-bold mb-0 fontController" >تعداد
+                                                        <p class=" font-weight-bold mb-0 fontController">تعداد
                                                             آگهی های شما</p>
 
                                                     </div>
@@ -78,8 +82,11 @@
                                                 </div>
                                                 <div class=" text-left">
                                                     <div class="text-left px-3">
-                                                        <p class="primary-font text-right font-size-18 font-weight-bold" > 
-                                                             <span><%= countAd %></span>
+                                                        <p
+                                                            class="primary-font text-right font-size-18 font-weight-bold">
+                                                            <span>
+                                                                <%= countAd %>
+                                                            </span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -97,16 +104,32 @@
                                         <div class="card " style="background-color: #31363F; border-radius: 20px;">
                                             <div class="card-body rounded-4"
                                                 style="background-color: #31363F; border-radius: 20px;">
-                                                <form action="#" method="post"
-                                                    enctype="application/x-www-form-urlencoded">
+                                                <form action="/user" method="post"
+                                                    enctype="application/x-www-form-urlencoded" id="updateForm">
 
+                                                    <div class="row ">
+                                                        <% if(validationError.length !==0 ){ %>
+                                                            <div class="col-12"
+                                                                style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                                <div class="alert alert-danger" style="width:99%;"
+                                                                    role="alert">
+                                                                    <span class="font-weight-bold font-vazirmatn">
+                                                                        <%= validationError%>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
                                                     <div class="row">
 
                                                         <div class=" col-12 text-white">
-                                                            <p for="formname" class=" fontController font-weight-bold ">نام کاربری</p>
+                                                            <p for="formname" class=" fontController font-weight-bold ">
+                                                                نام
+                                                                کاربری</p>
                                                             <input type="text"
                                                                 class=" inputDesign form-control form-control-lg text-white font-weight-bold font-size-17 "
-                                                                id="name" name="name" required placeholder="<%= userData.name %>">
+                                                                id="name" name="name" required
+                                                                value="<%= userData.name %>">
                                                         </div>
 
                                                     </div>
@@ -122,73 +145,78 @@
                                                         <div class="form-group col-md-12 text-white">
                                                             <label for="description"
                                                                 class="fontController font-weight-bold">آدرس</label>
-                                                            <textarea id="description"
-                                                                class="form-control form-control-lg  text-white inputDesign  font-weight-bold "
-                                                                name="description" placeholder="<%= userData.address %>" rows="6"></textarea>
+                                                            <textarea id="address"
+                                                                class="form-control form-control text-white inputDesign "
+                                                                name="address"
+                                                                rows="6"><%= userData.address ?? ' آدرس خود را وارد نمایید ' %></textarea>
                                                         </div>
 
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary fontController">ویرایش
-                                                        اطلاعات</button>
+                                                    <button type="submit" class="btn fontController text-white "
+                                                        style="width: 100px; background: rgb(249 115 22 / 1);">
+                                                        بروزرسانی
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div>                            
+                                </div>
 
 
-                            <!-- Footer -->
+                                <!-- Footer -->
 
-                            <%- include('../includes/user-dashboard/Footer.ejs') %>
+                                <%- include('../includes/user-dashboard/Footer.ejs') %>
+                            </div>
+
+
                         </div>
 
 
             </div>
+            <!-- end container-fluid -->
 
+            <!-- Right Sidebar -->
+            <div class="right-bar">
+                <div data-simplebar class="h-100">
+                    <div class="rightbar-title px-3 py-4">
+                        <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                            <i class="mdi mdi-close noti-icon"></i>
+                        </a>
+                        <h5 class="m-0">تنظیمات</h5>
+                    </div>
 
-        </div>
-        <!-- end container-fluid -->
+                    <!-- Settings -->
+                    <hr class="mt-0">
+                    <h6 class="text-center mb-0">انتخاب طرح</h6>
 
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title px-3 py-4">
-                    <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
-                    <h5 class="m-0">تنظیمات</h5>
+                    <div class="p-4">
+                        <div class="mb-2">
+                            <img src="#" class="img-fluid img-thumbnail" alt="">
+                        </div>
+                        <div class="custom-control custom-switch mb-3">
+                            <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch"
+                                checked>
+                            <label class="custom-control-label" for="light-mode-switch">طرح روشن</label>
+                        </div>
+
+                        <div class="mb-2">
+                            <img src="#" class="img-fluid img-thumbnail" alt="">
+                        </div>
+                        <div class="custom-control custom-switch mb-3">
+                            <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch"
+                                data-bsstyle="/assets/css/bootstrap-dark.min.css"
+                                data-appstyle="/assetscss/app-dark.css">
+                            <label class="custom-control-label" for="dark-mode-switch">طرح تیره</label>
+                        </div>
+                    </div>
+
                 </div>
-
-                <!-- Settings -->
-                <hr class="mt-0">
-                <h6 class="text-center mb-0">انتخاب طرح</h6>
-
-                <div class="p-4">
-                    <div class="mb-2">
-                        <img src="#" class="img-fluid img-thumbnail" alt="">
-                    </div>
-                    <div class="custom-control custom-switch mb-3">
-                        <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked>
-                        <label class="custom-control-label" for="light-mode-switch">طرح روشن</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="#" class="img-fluid img-thumbnail" alt="">
-                    </div>
-                    <div class="custom-control custom-switch mb-3">
-                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch"
-                            data-bsstyle="/assets/css/bootstrap-dark.min.css" data-appstyle="/assetscss/app-dark.css">
-                        <label class="custom-control-label" for="dark-mode-switch">طرح تیره</label>
-                    </div>
-                </div>
-
+                <!-- end slimscroll-menu-->
             </div>
-            <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
+            <!-- /Right-bar -->
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+            <!-- Right bar overlay-->
+            <div class="rightbar-overlay"></div>
 
 
     </body>
