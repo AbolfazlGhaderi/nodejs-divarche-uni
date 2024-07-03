@@ -1,17 +1,36 @@
-import express from "express";
-import { inject, injectable } from "inversify";
-import { IOCTYPES } from "../../iOC/ioc.types";
-import { UserRepository } from "./user.repository";
-import { IUserService } from "./interface/user.service.interface";
-import { UserEntity } from "../../models/user.entity";
+import express from 'express';
+import { inject, injectable } from 'inversify';
+import { IOCTYPES } from '../../iOC/ioc.types';
+import { UserRepository } from './user.repository';
+import { UserEntity } from '../../models/user.entity';
+import { IUserService } from './interface/user.service.interface';
+import { AdRepository } from '../ad/ad.repository';
+
+//  types And Interface
+type TCreateUser = {
+  name: string;
+  phone: string;
+};
+//
 
 @injectable()
 export class UserService implements IUserService {
   @inject(IOCTYPES.UserRepository) private userRepository: UserRepository;
+  @inject(IOCTYPES.AdRepository) private Adrepository: AdRepository;
 
-  async getUsers(req: express.Request): Promise<UserEntity[]> {
-    const user = await this.userRepository.find();
-
-    return user;
+  async GetDashboard(req: express.Request, res: express.Response) {
+    if (!req.userSession || !req.userSession.user) {
+      res.redirect('/auth/login');
+    }
+    const user = req.userSession?.user as UserEntity;
+    
+    const countAd = await this.Adrepository.count({ where: { user: user } });
+    user.phone = user.phone.replace('+98','0');
+    
+    return res.render('./user-dashboard/Dashboard', {
+      pageTitle: 'Dashboard - DivarChe',
+      userData: user,
+      countAd
+    });
   }
 }

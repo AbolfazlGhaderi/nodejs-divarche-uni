@@ -130,7 +130,7 @@ export class AuthService implements IAuthService {
 
       // Register User
       if (!user) {
-        user = await userRepository.save({ name: `U-${phoneNumber}`, phone: phoneNumber });
+        user = await userRepository.save({ name: `U-${phoneNumber.replace('+98','0')}`, phone: phoneNumber });
       }
 
       // Save Session Data

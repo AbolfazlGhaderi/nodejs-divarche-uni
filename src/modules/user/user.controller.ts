@@ -10,11 +10,8 @@ export class UserController extends BaseHttpController {
   @inject(IOCTYPES.UserService) private userService: UserService;
 
   @httpGet('/dashboard')
-  async testView(@request() req:express.Request,@response() res: express.Response) {
-    // console.log(req.userSession);
-    res.render('./user-dashboard/Dashboard', {
-      pageTitle: 'Dashboard - DivarChe',
-    });
+  async GetDashboard(@request() req: express.Request, @response() res: express.Response) {
+    return await this.userService.GetDashboard(req, res);
   }
 
   // @httpGet("/")

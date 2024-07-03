@@ -56,7 +56,7 @@
                                                 <div class=" text-left">
                                                     <div class="text-left px-3">
                                                         <p class="primary-font text-right font-size-18 font-weight-bold">
-                                                            09100368361</p>
+                                                            <span dir="ltr"><%= userData.phone%></span></p>
                                                     </div>
                                                 </div>
                                                 <!-- <p class="mb-0 mt-n1"><span class="badge badge-soft-success mr-2"> 0.8% <i class="mdi mdi-arrow-up"></i> </span> از دوره قبلی</p> -->
@@ -78,7 +78,8 @@
                                                 </div>
                                                 <div class=" text-left">
                                                     <div class="text-left px-3">
-                                                        <p class="primary-font text-right font-size-18 font-weight-bold" >10
+                                                        <p class="primary-font text-right font-size-18 font-weight-bold" > 
+                                                             <span><%= countAd %></span>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -102,11 +103,10 @@
                                                     <div class="row">
 
                                                         <div class=" col-12 text-white">
-                                                            <p for="formname" class=" fontController font-weight-bold ">نام و نام
-                                                                خانوادگی</p>
+                                                            <p for="formname" class=" fontController font-weight-bold ">نام کاربری</p>
                                                             <input type="text"
                                                                 class=" inputDesign form-control form-control-lg text-white font-weight-bold font-size-17 "
-                                                                id="name" name="name" required>
+                                                                id="name" name="name" required placeholder="<%= userData.name %>">
                                                         </div>
 
                                                     </div>
@@ -124,7 +124,7 @@
                                                                 class="fontController font-weight-bold">آدرس</label>
                                                             <textarea id="description"
                                                                 class="form-control form-control-lg  text-white inputDesign  font-weight-bold "
-                                                                name="description" placeholder="اصفهان،خیابان محمدیه،کوچه امیریه" rows="6"></textarea>
+                                                                name="description" placeholder="<%= userData.address %>" rows="6"></textarea>
                                                         </div>
 
                                                     </div>
@@ -134,9 +134,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
+                                </div>                            
 
 
                             <!-- Footer -->
