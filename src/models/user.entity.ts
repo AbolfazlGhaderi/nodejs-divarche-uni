@@ -1,5 +1,5 @@
+import { AdEntity } from "./ad.entity";
 import { CityEntity } from "./city.entity";
-import { CarAdEntity } from "./car.ad.entity";
 import { SessionEntity } from "./session.entity";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
@@ -14,8 +14,8 @@ export class UserEntity {
   phone: string;
   @Column({ nullable: true })
   address: string;
-  @OneToMany(() => CarAdEntity, (car_ad) => car_ad.user)
-  car_ads: CarAdEntity[];
+  @OneToMany(() => AdEntity, (ad) => ad.user)
+  ad: AdEntity[];
 
   @ManyToOne(() => CityEntity, (city) => city.user, { nullable: true })
   @JoinColumn({ name: "city_id" })

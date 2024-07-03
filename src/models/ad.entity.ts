@@ -3,8 +3,8 @@ import { UserEntity } from "./user.entity";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity(EntityNameEnum.CarAd)
-export class CarAdEntity {
+@Entity(EntityNameEnum.Ad)
+export class AdEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
   @Column({ nullable: false })
@@ -24,11 +24,11 @@ export class CarAdEntity {
   @UpdateDateColumn()
   update_at: Date;
 
-  @ManyToOne(() => UserEntity, (user) => user.car_ads, { nullable: false })
+  @ManyToOne(() => UserEntity, (user) => user.ad, { nullable: false })
   @JoinColumn({ name: "user_id" })
   user: UserEntity;
 
-  @ManyToOne(() => CityEntity, (city) => city.car_ad, { nullable: false })
+  @ManyToOne(() => CityEntity, (city) => city.ad, { nullable: false })
   @JoinColumn({ name: "city_id" })
   city: string;
 }
