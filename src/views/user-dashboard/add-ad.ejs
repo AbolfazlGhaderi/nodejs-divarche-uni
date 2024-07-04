@@ -4,7 +4,7 @@
 
     <body data-layout="detached" data-topbar="colored" style="background-color: #222831;">
 
-        <% if(successAddProduct=='success-add-product' ) { %>
+        <!-- <%// if(successAddProduct=='success-add-product' ) { %>
             <script>
                 const Toast = Swal.mixin({
                     toast: true,
@@ -22,8 +22,8 @@
                     icon: 'success',
                     title: 'محصول با موفقیت ذخیره شد'
                 })
-            </script>
-            <% } %>
+            </script> -->
+            <%// } %> 
 
                 <div class="container-fluid" style="background-color: #222831;">
                     <!-- Begin page -->
@@ -46,7 +46,7 @@
                                             <div class="col-12">
                                                 <div
                                                     class="page-title-box d-flex align-items-center justify-content-between">
-                                                    <h2 class="page-title mb-0 font-size-20 font-weight-bold"> افزودن آگهی</h2>
+                                                    <h2 class="page-title mb-0  font-weight-bold" style="font-size: 22px;"> افزودن آگهی</h2>
                                                 </div>
                                             </div>
                                         </div>
@@ -56,9 +56,22 @@
                                                     style="background-color: #31363F; border-radius: 20px;">
                                                     <div class="card-body rounded-4"
                                                         style="background-color: #31363F; border-radius: 20px;">
-                                                        <form action="/admin/add-product" method="post"
+                                                        <form action="/ad" method="post"
                                                             enctype="multipart/form-data">
 
+                                                            <div class="row ">
+                                                                <% if(validationError.length !==0 ){ %>
+                                                                    <div class="col-12"
+                                                                        style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                                        <div class="alert alert-danger" style="width:99%;"
+                                                                            role="alert">
+                                                                            <span class="font-weight-bold font-vazirmatn">
+                                                                                <%= validationError%>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <% } %>
+                                                            </div>
                                                             <div class="row">
 
                                                                 <div class="form-group col-12 text-white" >
@@ -75,24 +88,40 @@
                                                             <div class="row">
 
                                                                 <div class="form-group col-md-4 text-white">
-
+<!-- 
                                                                     <label for="formname" class="fontController font-weight-medium">برند خودرو </label>
 
                                                                     <select id="brand" name="brand"
                                                                         class="text-white inputDesign  form-control font-weight-bold  font-size-16">
-                                                                        <option value="saipa">saipa</option>
+                                                                        <option value="pride">پراید</option>
+                                                                        <option value="peugeot">پژو</option>
+                                                                        <option value="samand">سمند</option>
+                                                                        <option value="tiba">تیبا</option>
+                                                                        <option value="quik">کوییک</option>
+                                                                        <option value="renault">رنو</option>
                                                                         <option value="bmw">BMW </option>
-
                                                                         <option value="benz">Benz</option>
 
-                                                                    </select>
+                                                                    </select> -->
+                                                                    <label for="formname" class="fontController font-weight-medium">برند خودرو </label>
+                                                                    <input list="brandlist" type="text" name="brand" id="brand" class="text-white inputDesign  form-control font-weight-bold  font-size-16" placeholder="برند خودروی خود را انتخاب کنید"required>
+                                                                    <datalist id="brandlist">
+                                                                            <option value="pride">پراید</option>
+                                                                            <option value="peugeot">پژو</option>
+                                                                            <option value="samand">سمند</option>
+                                                                            <option value="tiba">تیبا</option>
+                                                                            <option value="quik">کوییک</option>
+                                                                            <option value="renault">رنو</option>
+                                                                            <option value="bmw"> </option>
+                                                                            <option value="benz"></option>
+                                                                    </datalist>
 
                                                                 </div>
                                                                 <div class="form-group col-md-4 text-white">
                                                                     <label for="formname" class="fontController font-weight-medium">سال تولید </label>
                                                                     <input type="number"
                                                                         class="text-white inputDesign  form-control font-weight-bold  font-size-16"
-                                                                        id="year" name="year"
+                                                                        id="p_year" name="p_year"
                                                                         placeholder="سال تولید خودرو را وارد کنید"
                                                                         required>
                                                                 </div>
@@ -138,8 +167,8 @@
                                                                     <h5 class=" mb-3 fontController text-white">وضعیت موتور </h5>
 
                                                                     <div class="custom-control custom-checkbox mb-2">
-                                                                        <input type="checkbox" class="custom-control-input font-weight-bold  font-size-16" id="enginecheck" name="enginecheck" value="false">
-                                                                        <label class="custom-control-label  " style="font-size: 14px;"for="enginecheck">تعمیر شده </label>
+                                                                        <input type="checkbox" class="custom-control-input font-weight-bold  font-size-16" id="engine_check" name="engine_check" value="false">
+                                                                        <label class="custom-control-label  " style="font-size: 14px;"for="engine_check">تعمیر شده </label>
                                                                     </div>
                                                                 </div>
 
@@ -147,8 +176,8 @@
                                                                     <h5 class=" mb-3 fontController text-white">وضعیت گیربکس </h5>
 
                                                                     <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input inputDesign font-weight-bold  font-size-16" id="gearboxcheck" name="gearboxcheck" value="false">
-                                                                        <label class="custom-control-label  " style="font-size: 14px;" for="gearboxcheck"> تعمیر شده</label>
+                                                                        <input type="checkbox" class="custom-control-input inputDesign font-weight-bold  font-size-16" id="gearbox_check" name="gearbox_check" value="false">
+                                                                        <label class="custom-control-label  " style="font-size: 14px;" for="gearbox_check"> تعمیر شده</label>
                                                                     </div>
                                                                 </div>
 
@@ -170,7 +199,7 @@
 
 
                                                             </div>
-                                                            <button type="submit" class="btn btn-primary fontController font-weight-bold">ثبت
+                                                            <button type="submit" class="btn fontController font-weight-bold" style="background: rgb(249 115 22 / 1); color: white;">ثبت
                                                                 آگهی</button>
 
 
