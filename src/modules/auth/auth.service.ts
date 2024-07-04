@@ -22,7 +22,7 @@ import { OtpErrorMessageEnum, ValidationErrorMessageEnum } from '../../common/en
 
 @injectable()
 export class AuthService implements IAuthService {
-  private cokieService: CookieService = new CookieService(CheckEnvVariables(process.env.COOKIE_SECRET, 'Cookie Secret'));
+  private cookieService: CookieService = new CookieService(CheckEnvVariables(process.env.COOKIE_SECRET, 'Cookie Secret'));
   private tokenService: TokenService = new TokenService(CheckEnvVariables(process.env.JWT_SECRET, 'JWT Secret'));
   private otpService: OtpService = new OtpService();
   private dataSource: DataSource = appDataSrc;
@@ -113,7 +113,7 @@ export class AuthService implements IAuthService {
     await this.otpService.DelOtp(key);
 
     //  Create Session/Cookie
-    const { hash, signature, value } = this.cokieService.sign(`${phoneNumber}-${GenerateRandomByte(10)}`);
+    const { hash, signature, value } = this.cookieService.sign(`${phoneNumber}-${GenerateRandomByte(10)}`);
     const expire_at = (Date.now() + 1000 * 60 * 60 * 72).toString(); // 72 hours
 
     // find User
@@ -130,7 +130,7 @@ export class AuthService implements IAuthService {
 
       // Register User
       if (!user) {
-        user = await userRepository.save({ name: `U-${phoneNumber.replace('+98','0')}`, phone: phoneNumber });
+        user = await userRepository.save({ name: `U-${phoneNumber.replace('+98', '0')}`, phone: phoneNumber });
       }
 
       // Save Session Data
@@ -151,20 +151,25 @@ export class AuthService implements IAuthService {
       });
 
       return res.redirect('/dashboard');
-      
     } catch (error) {
-
       logger.error('Error in Transaction LoginCheckOtp', error);
       await queryRunner.rollbackTransaction();
       req.flash('otpError', OtpErrorMessageEnum.ErrorInTransaction);
       return res.redirect('/auth/login');
-
     } finally {
-
       await queryRunner.release();
-
     }
 
     // return loginCheckOtpData;
+  }
+
+  // Logout
+  async Logout(req: express.Request, res: express.Response) {
+    const sessionData = req.userSession as SessionEntity;
+    await this.cookieService.ExpiringSession(sessionData);
+
+    res.clearCookie(CookieNameEnum.Session);
+
+    return res.redirect('/auth/login'); // TODO: user should redirect to /
   }
 }

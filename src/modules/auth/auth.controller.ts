@@ -40,4 +40,15 @@ export class AuthController extends BaseHttpController {
   }
 
   // <=== Check Otp
+
+  // Logout
+  @httpGet('/logout', Guard.AuthGuard())
+  async Logout(
+    @request() req: express.Request,
+    @response() res: express.Response,
+  ) {
+    return await this.authService.Logout( req, res);
+  }
+
+  
 }
