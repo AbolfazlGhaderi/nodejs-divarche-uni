@@ -13,7 +13,6 @@ import { S3Service } from '../../shared/services/s3.service';
 import { IAdService } from './interface/ad.service.interface';
 import { CheckEnvVariables, GenerateImageName } from '../../core/utils/functions.utils';
 
-
 @injectable()
 export class AdService implements IAdService {
   private s3Service: S3Service = new S3Service(
@@ -83,7 +82,19 @@ export class AdService implements IAdService {
     });
 
     await this.adRepository.save(ad);
+    req.flash('result', 'آگهی شما با موفقیت ثبت شد');
+    return res.redirect('/myads');
+  }
 
-    return 'ok';
+  async MyAds(req: express.Request, res: express.Response) {
+    const user = req.userSession?.user as UserEntity;
+    const ads = await this.adRepository.find({ where: { user:{id:user.id} } });
+    return res.render('./user-dashboard/ads', {
+      pageTitle: 'My Ads - DivarChe',
+      ads,
+      userData: user,
+      error: req.flash('error'),
+      result: req.flash('result'),
+    });
   }
 }

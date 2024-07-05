@@ -1,237 +1,287 @@
 <%- include('../includes/user-dashboard/Head.ejs') %>
 
 
-</head>
+    </head>
 
-<body data-layout="detached" data-topbar="colored" style="background-color: #222831;" > 
+    <body data-layout="detached" data-topbar="colored" style="background-color: #222831;">
 
 
-    <!-- editmod = true But No product found -->
-   <% if(errorGetPruduct=='Error-get-product') { %>
-    <script>
-        const Toast2 = Swal.mixin({
-           toast: true,
-            position: 'top-end',
-           showConfirmButton: false,
-           timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-       })
+        <!-- editmod = true But No product found -->
 
-       Toast2.fire({
-            icon: 'error',
-            title: ' محصول یافت نشد !'
-       })
-   </script>
-    <% } %>
-    <% if(successDeleteProduct=='Success-Delete-Product') { %>
-        <script>
-            const Toast3 = Swal.mixin({
-               toast: true,
-                position: 'top-end',
-               showConfirmButton: false,
-               timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-           })
-    
-           Toast3.fire({
-                icon: 'success',
-                title: ' محصول با موفقیت حذف شد  !'
-           })
-       </script>
-        <% } %>
+        <% if(result[0]) { %>
+            <script>
+                const Toast3 = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast3.fire({
+                    icon: 'success',
+                    title: ' <%= result[0] %>!'
+                })
+            </script>
+            <% } %>
 
 
 
-    <div class="container-fluid">
-        <!-- Begin page -->
-        <div id="layout-wrapper">
+                <div class="container-fluid">
+                    <!-- Begin page -->
+                    <div id="layout-wrapper">
 
-                <!-- Header -->
-            <%- include('../includes/user-dashboard/Header.ejs') %>
-                
-            <!-- End Header -->
+                        <!-- Header -->
+                        <%- include('../includes/user-dashboard/Header.ejs') %>
 
-            <!-- Menu  -->
-			<%- include('../includes/user-dashboard/Menu.ejs') %>
+                            <!-- End Header -->
 
-            <!-- End Menu  -->
+                            <!-- Menu  -->
+                            <%- include('../includes/user-dashboard/Menu.ejs') %>
 
-            <!-- Main -->
-            <div class="main-content">
-                <div class="page-content">
-                    <!-- start page title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="page-title mb-0 font-size-18">آگهی ها</h4>
+                                <!-- End Menu  -->
+
+                                <!-- Main -->
+                                <div class="main-content">
+                                    <div class="page-content">
+                                        <!-- start page title -->
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div
+                                                    class="page-title-box d-flex align-items-center justify-content-between">
+                                                    <h3 class="page-title mb-0 ">آگهی ها</h3>
 
 
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end page title -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end page title -->
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card" style="background-color: #31363F; border-radius: 20px;">
-                                <div class="card-body" style="background-color: #31363F; border-radius: 20px;">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card"
+                                                    style="background-color: #31363F; border-radius: 20px;">
+                                                    <div class="card-body"
+                                                        style="background-color: #31363F; border-radius: 20px;">
 
-                                    <h4 class="card-title">آگهی های مربوط به شما </h4>
-                                    <p class="card-title-desc"> با دکمه حذف ، میتوانید آگهی را پاک کنید  و با دکمه ویرایش ، میتوانید اطلاعات آگهی های خود را ویرایش کنید
-                                    </p>
+                                                        <h4 class="card-title text-white fontController">آگهی های مربوط
+                                                            به شما </h4>
+                                                        <p class="card-title-desc"> با دکمه حذف ، میتوانید آگهی
+                                                            را پاک کنید و با دکمه ویرایش ، میتوانید اطلاعات آگهی
+                                                            های خود را ویرایش کنید
+                                                        </p>
+                                                        <a href="/ad" class="btn font-weight-bold mb-4"
+                                                            style="font-size: 15px; background: rgb(42, 167, 4); color: white;">
+                                                            افزودن آگهی جدید
+                                                        </a>
 
-                                    <% if(product[0]){ %> <!--///////////////////////////////////////////////// -->
-                                       
-                                        <table id="datatable" class="table table-bordered dt-responsive nowrap border-#fff" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                                <tr class="text-white font-weight-bold">
-                                                    <th class="text-white"> عنوان </th>
-                                                    <th>برند خودرو</th>
-                                                    <th>قیمت</th>
-                                                    <th>سال تولید</th>
-                                                    <th>کارکرد</th>
-                                                    <th>عملیات ها</th>
-                                                </tr>
-                                            </thead>
-    
-                                            <tbody class="text-center">
-                                                <% product.forEach(productt => { %>
-                                                    <tr class="text-white">
-                                                        <td><%= productt.title %> </td>
-                                                        <td ><%= productt.brand %></td>
-                                                        <td >
-                                                            <input  id="price" type="text" readonly value="<%= productt.price %>" style="border:none;text-align: center;color:white ; background-color: #31363F; ">
-                                                        </td>
-                                                        <td ><span class="text-white"><%= productt.countP %></span></td>
-                                                        <td ><span class="text-white"><%= productt.addDate %></span></td>
-                                                        <td>
-                                                            <a class="btn " href="/admin/edit-product/<%= productt._id %>"  style="background-color: #eb910a; color: white;" >ویرایش</a>
+                                                        <% if(error.length !==0 ){ %>
+                                                            <div class="col-12"
+                                                                style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                                <div class="alert alert-danger" style="width:99%;"
+                                                                    role="alert">
+                                                                    <span class="font-weight-bold font-vazirmatn">
+                                                                        <%= Error%>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
 
-                                                            <form action="/admin/delete-product" method="post" style="display: inline;"  id="delSubmit<%= productt._id %>">
-                                                                <input type="hidden" value="<%= productt._id %>" name="productID">
-                                                                <input type="button" class="btn" onclick="myFunction('delSubmit<%= productt._id %>')" value="حذف"  style="background-color: #dd2e16; color: white; font-weight: 700;" >
-                                                            </form>
+                                                                <% if(ads[0]){%>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="table-responsive">
+                                                                                <table
+                                                                                    class="table table-hover mb-0 table-dark">
 
-                                                        </td>
-                                                    </tr>
-                                                 
-                                                <% }) %>
+                                                                                    <thead>
+                                                                                        <tr class="text-white font-weight-bold "
+                                                                                            style="justify-content: center; text-align: center;">
+                                                                                            <th class="text-white">
+                                                                                                عنوان </th>
+                                                                                            <th>برند خودرو</th>
+                                                                                            <th>قیمت</th>
+                                                                                            <th>سال تولید</th>
+                                                                                            <th>کارکرد</th>
+                                                                                            <th>عملیات ها</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <% ads.forEach((ad)=>{%>
+                                                                                        <tbody
+                                                                                        style="text-align: center;">
 
-                                               
-                                            </tbody>
-                                        </table>
-                                     
-                                     <% } %> 
-                                     
-                                     <!--///////////////////////////////////////////////// -->
+                                                                                        <td>
+                                                                                            <%= ad.title %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= ad.brand %>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%= ad.price %>
+                                                                                        </td>
+                                                                                        <td><span
+                                                                                                class="text-white">
+                                                                                                <%= ad.p_year %>
+                                                                                            </span></td>
+                                                                                        <td><span
+                                                                                                class="text-white">
+                                                                                                <%= ad.operation %>
+                                                                                            </span></td>
+                                                                                        <td>
+                                                                                            <a class="btn "
+                                                                                                href="/admin/edit-product/<%= ad._id %>"
+                                                                                                style="background-color: #eb910a; color: white;">
+                                                                                                <i class="mdi mdi-pencil"></i>
+                                                                                            
+                                                                                            </a>
 
+                                                                                            <form action="/ad/delete"
+                                                                                                method="post"
+                                                                                                style="display: inline;"
+                                                                                                id="delSubmit<%= ad._id %>">
+                                                                                                <input type="hidden"
+                                                                                                    value="<%= ad._id %>"
+                                                                                                    name="productID">
+                                                                                                <a type="button"
+                                                                                                    class="btn"
+                                                                                                    onclick="myFunction('delSubmit<%= ad._id %>')"
+                                                                                                    style="background-color: #dd2e16; color: white; font-weight: 700;">
+                                                                                                    <i class="mdi mdi-delete"></i>
+                                                                                                </a>
+                                                                                            </form>
+
+                                                                                        </td>
+                                                                                    </tbody>
+                                                                                        <%})%>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                    <%}else { %>
+
+                                                                        <div class="row">
+                                                                            <div class="col-12"
+                                                                                style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                                                <div class="alert alert-danger"
+                                                                                    style="width:99%;" role="alert">
+                                                                                    <span
+                                                                                        class="font-weight-bold font-vazirmatn">
+                                                                                        هیچ آگهی ای ثبت نشده
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <% } %>
+
+                                                                            <!--///////////////////////////////////////////////// -->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%- include('../includes/user-dashboard/Footer.ejs') %>
+
+                                    </div>
 
                                 </div>
+
+
+                    </div>
+                    <!-- end container-fluid -->
+
+                    <!-- Right Sidebar -->
+                    <div class="right-bar">
+                        <div data-simplebar class="h-100">
+                            <div class="rightbar-title px-3 py-4">
+                                <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                                    <i class="mdi mdi-close noti-icon"></i>
+                                </a>
+                                <h5 class="m-0">تنظیمات</h5>
                             </div>
+
+                            <!-- Settings -->
+                            <hr class="mt-0">
+                            <h6 class="text-center mb-0">انتخاب طرح</h6>
+
+                            <div class="p-4">
+                                <div class="mb-2">
+                                    <img src="#" class="img-fluid img-thumbnail" alt="">
+                                </div>
+                                <div class="custom-control custom-switch mb-3">
+                                    <input type="checkbox" class="custom-control-input theme-choice"
+                                        id="light-mode-switch" checked>
+                                    <label class="custom-control-label" for="light-mode-switch">طرح روشن</label>
+                                </div>
+
+                                <div class="mb-2">
+                                    <img src="#" class="img-fluid img-thumbnail" alt="">
+                                </div>
+                                <div class="custom-control custom-switch mb-3">
+                                    <input type="checkbox" class="custom-control-input theme-choice"
+                                        id="dark-mode-switch" data-bsstyle="/assets/css/bootstrap-dark.min.css"
+                                        data-appstyle="/assets/css/app-dark.css">
+                                    <label class="custom-control-label" for="dark-mode-switch">طرح تیره</label>
+                                </div>
+                            </div>
+
                         </div>
-                </div>
+                        <!-- end slimscroll-menu-->
+                    </div>
+                    <!-- /Right-bar -->
 
-                <%- include('../includes/user-dashboard/Footer.ejs') %>
-
-            </div>
-
-        </div>
-
-
-    </div>
-    <!-- end container-fluid -->
-
-    <!-- Right Sidebar -->
-    <div class="right-bar">
-        <div data-simplebar class="h-100">
-            <div class="rightbar-title px-3 py-4">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close noti-icon"></i>
-                </a>
-                <h5 class="m-0">تنظیمات</h5>
-            </div>
-
-            <!-- Settings -->
-            <hr class="mt-0">
-            <h6 class="text-center mb-0">انتخاب طرح</h6>
-
-            <div class="p-4">
-                <div class="mb-2">
-                    <img src="#" class="img-fluid img-thumbnail" alt="">
-                </div>
-                <div class="custom-control custom-switch mb-3">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked>
-                    <label class="custom-control-label" for="light-mode-switch">طرح روشن</label>
-                </div>
-
-                <div class="mb-2">
-                    <img src="#" class="img-fluid img-thumbnail" alt="">
-                </div>
-                <div class="custom-control custom-switch mb-3">
-                    <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch" data-bsstyle="/assets/css/bootstrap-dark.min.css" data-appstyle="/assets/css/app-dark.css">
-                    <label class="custom-control-label" for="dark-mode-switch">طرح تیره</label>
-                </div>
-            </div>
-
-        </div>
-        <!-- end slimscroll-menu-->
-    </div>
-    <!-- /Right-bar -->
-
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
+                    <!-- Right bar overlay-->
+                    <div class="rightbar-overlay"></div>
 
 
-</body>
-<script>  
-function myFunction(id) {
-    Swal.fire({
-  title: "آیا از حذف این محصول مطمئن هستید؟",
-  text: "",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonText: "انصراف",
-  confirmButtonText: "بله"
-}).then((result) => {
-  if (result.isConfirmed) {
+    </body>
+    <script>
+        function myFunction(id) {
+            Swal.fire({
+                title: "آیا از حذف این محصول مطمئن هستید؟",
+                text: "",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonText: "انصراف",
+                confirmButtonText: "بله"
+            }).then((result) => {
+                if (result.isConfirmed) {
 
-    document.getElementById(id).submit();
-  }
-});
-   
+                    document.getElementById(id).submit();
+                }
+            });
 
-}
 
-function separateNum(value, input) {
-    console.log(value+" ///  "+input);
-    /* seprate number input 3 number */
-    var nStr = value + '';
-    nStr = nStr.replace(/\,/g, "");
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    if (input !== undefined) {
+        }
 
-        input.value = x1 + x2;
-    } else {
-        return x1 + x2;
-    }
-}
 
-</script>
-<%- include('../includes/user-dashboard/End.ejs') %>
 
-</html>
+        function separateNum(value, input) {
+            console.log(value + " ///  " + input);
+            /* seprate number input 3 number */
+            var nStr = value + '';
+            nStr = nStr.replace(/\,/g, "");
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            if (input !== undefined) {
+
+                input.value = x1 + x2;
+            } else {
+                return x1 + x2;
+            }
+        }
+
+    </script>
+    <%- include('../includes/user-dashboard/End.ejs') %>
