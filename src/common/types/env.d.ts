@@ -9,7 +9,14 @@ declare namespace NodeJS {
     DB_PASS: string;
     DB_NAME: string;
 
-    COOKIE_SECRET:string;
-    JWT_SECRET:string;
+    COOKIE_SECRET: string;
+
+    JWT_SECRET: string;
+
+    S3_ENDPOINT: string;
+    S3_BUCKET: string;
+    S3_ACCESS_KEY_ID: string;
+    S3_SECRET_KEY: string;
+    S3_LOCATION_ENDPOINT: string;
   }
 }
