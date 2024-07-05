@@ -18,9 +18,10 @@ export class ImageEntity {
   @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 
-  @ManyToOne(() => AdEntity, (ad) => ad.image)
+  @OneToOne(() => AdEntity, (ad) => ad.image)
   ad: AdEntity;
 
   @CreateDateColumn()
   create_at: Date;
+  
 }

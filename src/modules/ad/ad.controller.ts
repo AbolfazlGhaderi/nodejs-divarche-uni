@@ -16,8 +16,7 @@ export class AdController extends BaseHttpController {
 
   @httpGet('/', Guard.AuthGuard())
   async GetCreateAd(@request() req: express.Request, @response() res: express.Response) {
-    const User = req.userSession?.user as UserEntity;
-    return res.render('./user-dashboard/add-ad', { pageTitle: 'Add Ad - DivarChe', userData: User ,validationError: req.flash('ValidationError')});
+    return await this.adService.GetCreateAd(req, res);
   }
 
   @httpPost('/', Guard.AuthGuard(), upload.single('image'), ValidationMiddleware.validateInput(CreateAdDto, '/ad'))

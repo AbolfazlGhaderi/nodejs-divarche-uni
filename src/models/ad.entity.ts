@@ -33,9 +33,9 @@ export class AdEntity {
   @Column({ nullable: false })
   price: string;
   @Column({ nullable: false, default: true }) // true : healthy  false : Un-Healthy
-  engine_check: boolean;
+  engine_check: string;
   @Column({ nullable: false, default: true }) // true : healthy  false : Un-Healthy
-  gearbox_check: boolean;
+  gearbox_check: string;
   @CreateDateColumn()
   create_atr: Date;
   @UpdateDateColumn()
@@ -49,7 +49,7 @@ export class AdEntity {
   @JoinColumn({ name: 'city_id' })
   city: CityEntity;
 
-  @OneToMany(() => ImageEntity, (image) => image.ad, { nullable: true })
+  @OneToOne(() => ImageEntity, (image) => image.ad, { nullable: true })
   @JoinColumn({ name: 'image_id' })
-  image: ImageEntity[];
+  image: ImageEntity;
 }
