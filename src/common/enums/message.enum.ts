@@ -8,3 +8,9 @@ export enum OtpErrorMessageEnum {
 export enum ValidationErrorMessageEnum {
   ValidationError = 'لطفا در وارد کردن اطلاعات دقت نمایید.',
 }
+
+export enum PublicMessageEnum {
+  AdDeleteSuccess = 'آگهی با موفقیت حذف شد',
+  AdCreateSuccess = 'آگهی با موفقیت ایجاد شد',
+  AdDeleteError = 'آگهی موجود نمیباشد ', // TODO:
+}

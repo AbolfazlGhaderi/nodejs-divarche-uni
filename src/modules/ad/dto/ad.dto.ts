@@ -1,4 +1,4 @@
-import { IsBoolean, IsEnum, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsEnum, IsNotEmpty, IsNumberString, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateAdDto {
   @IsString()
@@ -23,4 +23,11 @@ export class CreateAdDto {
   @IsString()
   @IsEnum(['true', 'false'])
   gearbox_check: string;
+}
+
+export class DeleteAdDto {
+  @IsString()
+  @IsNotEmpty()
+  @IsUUID()
+  id: string;
 }

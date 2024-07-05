@@ -1,16 +1,17 @@
 import express from 'express';
 import { inject, injectable } from 'inversify';
 
-import { CreateAdDto } from './dto/ad.dto';
 import { IOCTYPES } from '../../iOC/ioc.types';
 import { AdRepository } from './ad.repository';
 import { cityRepository } from './city.repository';
 import { ImageRepository } from './image.repository';
 import { UserEntity } from '../../models/user.entity';
 import { ImageEntity } from '../../models/image.entity';
+import { CreateAdDto, DeleteAdDto } from './dto/ad.dto';
 import { FileChecker } from '../../core/utils/file.utils';
 import { S3Service } from '../../shared/services/s3.service';
 import { IAdService } from './interface/ad.service.interface';
+import { PublicMessageEnum } from '../../common/enums/message.enum';
 import { CheckEnvVariables, GenerateImageName } from '../../core/utils/functions.utils';
 
 @injectable()
@@ -34,7 +35,7 @@ export class AdService implements IAdService {
     });
   }
 
-  async CreateAd(CreateAdData: CreateAdDto, req: express.Request, res: express.Response) {
+  async CreateAd(req: express.Request, res: express.Response, CreateAdData: CreateAdDto) {
     const file = req.file;
     const user = req.userSession?.user as UserEntity;
     let image: undefined | ImageEntity;
@@ -82,19 +83,30 @@ export class AdService implements IAdService {
     });
 
     await this.adRepository.save(ad);
-    req.flash('result', 'آگهی شما با موفقیت ثبت شد');
+    req.flash('result', PublicMessageEnum.AdCreateSuccess);
     return res.redirect('/myads');
   }
 
   async MyAds(req: express.Request, res: express.Response) {
     const user = req.userSession?.user as UserEntity;
-    const ads = await this.adRepository.find({ where: { user:{id:user.id} } });
+    const ads = await this.adRepository.find({ where: { user: { id: user.id } }, order: { create_atr: 'ASC' } });
     return res.render('./user-dashboard/ads', {
       pageTitle: 'My Ads - DivarChe',
       ads,
       userData: user,
+      validationError: req.flash('ValidationError'),
       error: req.flash('error'),
       result: req.flash('result'),
     });
+  }
+
+  async DeleteAd(req: express.Request, res: express.Response, deleteAdData: DeleteAdDto) {
+    const result = await this.adRepository.delete({ id: deleteAdData.id });
+    if (result.affected === 0) {
+      req.flash('error', PublicMessageEnum.AdDeleteError);
+      return res.redirect('/myads');
+    }
+    req.flash('result', PublicMessageEnum.AdDeleteSuccess);
+    return res.redirect('/myads');
   }
 }
