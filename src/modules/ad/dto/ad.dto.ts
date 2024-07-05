@@ -1,4 +1,4 @@
-import { IsBoolean, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsEnum, IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class CreateAdDto {
   @IsString()
@@ -15,8 +15,12 @@ export class CreateAdDto {
   price: string;
   @IsString()
   description: string;
-  @IsBoolean()
-  engine_check: boolean;
-  @IsBoolean()
-  gearbox_check: boolean;
+  @IsOptional()
+  @IsString()
+  @IsEnum(['true', 'false'])
+  engine_check: string;
+  @IsOptional()
+  @IsString()
+  @IsEnum(['true', 'false'])
+  gearbox_check: string;
 }

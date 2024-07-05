@@ -11,15 +11,12 @@ export class ValidationMiddleware {
     return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
       try {
         const body = req.body;
-
         const validationClass = plainToInstance(DTO, body);
-
         // Validate DTO object
         const errors: ValidationError[] = await validate(validationClass, {});
 
         if (errors.length > 0) {
           const errorMsg = errors.map((error) => Object.values(error.constraints!)).flat();
-
           // throw new BadRequestError("bad Request", errorMsg);
           req.flash('ValidationError', message ?? ValidationErrorMessageEnum.ValidationError);
           res.redirect(redirectPath)
