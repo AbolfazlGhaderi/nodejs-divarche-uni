@@ -1,7 +1,18 @@
 import { CityEntity } from './city.entity';
 import { UserEntity } from './user.entity';
 import { EntityNameEnum } from '../common/enums/entity.name.enum';
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { ImageEntity } from './image.entity';
 
 @Entity(EntityNameEnum.Ad)
 export class AdEntity {
@@ -25,8 +36,6 @@ export class AdEntity {
   engine_check: boolean;
   @Column({ nullable: false, default: true }) // true : healthy  false : Un-Healthy
   gearbox_check: boolean;
-  @Column({ nullable: true })
-  image: string;
   @CreateDateColumn()
   create_atr: Date;
   @UpdateDateColumn()
@@ -38,5 +47,9 @@ export class AdEntity {
 
   @ManyToOne(() => CityEntity, (city) => city.ad, { nullable: false })
   @JoinColumn({ name: 'city_id' })
-  city: string;
+  city: CityEntity;
+
+  @OneToMany(() => ImageEntity, (image) => image.ad, { nullable: true })
+  @JoinColumn({ name: 'image_id' })
+  image: ImageEntity[];
 }

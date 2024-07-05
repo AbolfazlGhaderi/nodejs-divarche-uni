@@ -3,6 +3,7 @@ import { CityEntity } from "./city.entity";
 import { SessionEntity } from "./session.entity";
 import { EntityNameEnum } from "../common/enums/entity.name.enum";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, JoinColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { ImageEntity } from "./image.entity";
 
 @Entity(EntityNameEnum.User)
 export class UserEntity {
@@ -23,7 +24,10 @@ export class UserEntity {
 
   @OneToMany(() => SessionEntity, (session) => session.user)
   session: SessionEntity[];
-
+  
+  @OneToMany(() => ImageEntity, (image) => image.user)
+  image:ImageEntity[]
+  
   @CreateDateColumn()
   create_at: Date;
   @UpdateDateColumn()
