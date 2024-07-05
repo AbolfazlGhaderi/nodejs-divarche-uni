@@ -1,0 +1,95 @@
+<%- include('./includes/Head.ejs') %>
+
+  </head>
+
+  <body dir="rtl" bgcolor="#222831" class=" justify-center items-center">
+
+    <div class="h-auto w-auto justify-center items-center ">
+      <div class="flex flex-col items-center justify-center px-6   mx-auto h-screen">
+
+        <a href="/" class="flex items-center mb-6 text-2xl font-semibold text-white">
+          <p class="text-[40px]">Divar<span class="text-orange-500 font-bold">CHE</span></p>
+
+        </a> <br>
+        <div class="flex items-center p-4 mb-4 text-sm  border rounded-lg bg-gray-800 text-yellow-300 border-yellow-800"
+          role="alert">
+          <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+          </svg>
+          <span class="sr-only">Info</span>
+          <div class="font-bold font-vazirmatn">
+            <span class="">هشدار!</span> چون این پروژه آزمایشی است ، بنابر این فقط شهر های استان اصفهان موجود می باشند .
+          </div>
+        </div>
+        <div class="w-full bg-[#31363F] shadow rounded-xl mt-6 max-w-md p-0 font-vazirmatn">
+          <div class=" space-y-12 p-10 ">
+            <h1
+              class="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-white font-vazirmatn text-center mb-12">
+              انتخاب شهر
+            </h1>
+            <form class="space-y-4 md:space-y-6 " action="/add-city" method="post"
+              enctype="application/x-www-form-urlencoded">
+
+              <div class="flex shadow-xl text-white" dir="ltr">
+                <input type="text" id="city" name="city" list="cityList" placeholder=" شهر مورد نظر خود را انتخاب کنید"
+                  class="bg-[#2c3036]  text-white border-[#2c3036] rounded-lg  flex-1 min-w-0 w-full text-sm p-2.5 text-center">
+                <% if(cities.length>=1){ %>
+
+                  <datalist id="cityList">
+                    <% cities.forEach(city => {%>
+                      <option value='<%= city.name%>'>
+                        <%= //city.name%>
+                      </option>
+
+                     <% }); %>
+                  </datalist>
+                  <% }else{ %>
+                    <option value=''>هیچ شهری یافت نشد</option>
+                    <% } %>
+
+              </div>
+
+
+
+
+
+                <% if(error.length > 0){ %>
+                  <div
+                    class="flex items-center p-4 mb-4 text-sm  border  rounded-lg bg-red-50  bg-[#2c3036] text-red-400 border-red-800"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Warning</span>
+                    <div class="font-bold font-vazirmatn">
+                      <span>
+                        <%= error %>
+                      </span>
+                    </div>
+                  </div>
+                  <% } %>
+
+              <button type="submit"
+              class="w-full text-white bg-[#393d43] shadow-xl  border-solid border-2 border-violet-500/0  hover:border-blue-500/70 transition duration-300  font-bold font-vazirmatn rounded-lg text-sm px-5 py-2.5 text-center ">
+              ادامه</button>
+
+            </form>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+
+
+
+
+  </html>

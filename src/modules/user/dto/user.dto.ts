@@ -7,3 +7,10 @@ export class UpdateUserDto {
   @IsString()
   address: string;
 }
+
+export class AddUserCityDto{
+  @IsString()
+  @IsNotEmpty()
+  city:string
+
+}

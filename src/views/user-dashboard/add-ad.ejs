@@ -71,6 +71,17 @@
                                                                         </div>
                                                                     </div>
                                                                     <% } %>
+                                                                <% if(Error.length !==0 ){ %>
+                                                                    <div class="col-12"
+                                                                        style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                                        <div class="alert alert-danger" style="width:99%;"
+                                                                            role="alert">
+                                                                            <span class="font-weight-bold font-vazirmatn">
+                                                                                <%= Error%>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <% } %>
                                                             </div>
                                                             <div class="row">
 

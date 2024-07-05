@@ -51,6 +51,14 @@ class Guard {
 
       req.userSession = session;
 
+      // Check City
+      if(!session.user.city){
+        if(req.url === '/add-city' ) {
+          return next()
+        }
+        return res.redirect('/add-city')
+      }
+
       next();
     };
   }
