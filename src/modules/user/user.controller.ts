@@ -30,4 +30,14 @@ export class UserController extends BaseHttpController {
   async UpdateUser(@requestBody() updaetDto: UpdateUserDto, @request() req: express.Request, @response() res: express.Response) {
     return await this.userService.UpdateUser(req, res, updaetDto);
   }
+
+  @httpGet('/aboutus') //TODO: Should create Global Service and controller
+  async GetAboutUs(@request() req: express.Request, @response() res: express.Response) {
+    return await this.userService.GetAboutUs(req, res);
+  }
+
+  @httpGet('/contact') //TODO: Should create Global Service and controller
+  async GetContact(@request() req: express.Request, @response() res: express.Response) {
+    return await this.userService.GetContact(req, res);
+  }
 }

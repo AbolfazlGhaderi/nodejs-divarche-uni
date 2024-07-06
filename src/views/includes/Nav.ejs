@@ -1,0 +1,63 @@
+<nav class=" right-5 shadow-lgrelative  p-6 py-5 font-vazirmatn 
+text-[20px] my-8 rounded-lg border-white bg-[#31363F]">
+    <!-- flex container -->
+    <div class="flex items-center justify-between">
+        <div
+            class="max-md:hidden text-white font-bold font-vazirmatn text-sm shadow-xl   px-3 rounded-xl bg-[#393d43]   border-solid border-2 border-violet-500/0 hover:border-violet-500/70 transition duration-300">
+            <a href="/auth/login" class="p-3 cursor-pointer w-full h-full block">ورود</a>
+
+        </div>
+
+        <!-- menu -->
+
+        <div
+            class="md:hidden text-white font-bold font-vazirmatn text-sm shadow-xl   px-3 rounded-xl bg-[#393d43]   border-solid border-2 border-violet-500/0 hover:border-violet-500/70 transition duration-300 ">
+
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                class=" hidden p-3 text-white bg-[#393d43]  font-medium rounded-lg text-sm shadow-xl   px-3 text-center max-md:inline-flex items-center"
+                type="button">
+                <i class="fa-solid fa-bars"></i>
+                <!-- <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg> -->
+            </button>
+
+            <!-- Dropdown menu -->
+            <div id="dropdown" class="z-10 hidden bg-[#31363F] divide-y divide-gray-100 rounded-lg shadow w-44">
+                <div class="py-2 text-white">
+                    <a href="/auth/login" class="block px-4 py-2 text-sm hover:bg-slate-700 ">ورود به ناحیه
+                        کاربری</a>
+                </div>
+                <ul class="py-2 text-sm text-white" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <a href="#" class="<%= active==='tt' ? 'activeMenu' :'' %> block px-4 py-2 hover:bg-slate-700">قوانین</a>
+                    </li>
+
+                    <li>
+                        <a href="/contact" class="<%= active==='contact' ? 'activeMenu' :'' %>  block px-4 py-2 hover:bg-slate-700">تماس با ما</a>
+                    </li>
+                    <li>
+                        <a href="/aboutus" class="<%= active==='aboutus' ? 'activeMenu' :'' %> block px-4 py-2 hover:bg-slate-700">درباره
+                            ما</a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <% console.log(active); %>
+        <div class="hidden md:flex space-x-4 md:space-x-8 text-white text-lg">
+            <a href="#" class="ml-5 <%= active==='tt' ? 'active' :'nava' %> ">قوانین </a>
+            <a href="/contact" class=" <%= active==='contact' ? 'active' :'nava' %> ">تماس با ما</a>
+            <a href="/aboutus" class=" <%= active==='aboutus' ? 'active' :'nava' %>">درباره ما</a>
+
+        </div>
+        <!-- logo -->
+        <div class=" text-white font-roboto">
+            <a href="/">
+                <p class="text-[25px]">Divar<span class="text-orange-500 font-bold">CHE</span></p>
+            </a>
+        </div>
+    </div>
+</nav>

@@ -67,4 +67,11 @@ export class UserService implements IUserService {
     await this.userRepository.save(user);
     return res.redirect('/dashboard');
   }
+
+  async GetAboutUs(req: express.Request, res: express.Response){
+    return res.render('./about-us', {pageTitle: 'About Us - DivarChe',active: 'aboutus'})
+  }
+  async GetContact(req: express.Request, res: express.Response){
+    return res.render('./contact', {pageTitle: 'About Us - DivarChe',active: 'contact'})
+  }
 }

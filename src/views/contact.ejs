@@ -1,0 +1,83 @@
+<%- include('./includes/Head.ejs') %>
+</head>
+
+<body dir="rtl" bgcolor="#222831">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+    <div class="relative max-w-[1440px] mx-12 2xl:mx-auto max-sm:mx-6">
+
+        <!-- nav bar -->
+        <%- include('./includes/Nav.ejs') %>
+
+        <!-- body -->
+
+        <div class="mr-12 max-md:mr-0">
+            <h1 class="font-vazirmatn font-bold text-4xl text-white max-md:text-center  max-md:text-xl "><span
+                    class="max-md:border-b-2 border-orange-500 ">تماس با ما</span></h1>
+        </div>
+
+        <section class=" bg-[#31363F] rounded-xl">
+
+            <div class="mt-10 py-8 lg:py-16 px-4 mx-auto max-w-screen-md font-vazirmatn">
+
+                <p class="mb-8 lg:mb-16 font-light text-center text-white sm:text-xl">شما میتوانید از طریق تکمیل کردن
+                    فرم زیر با ما در ارتباط باشید </p>
+                <form action="#" class="space-y-8">
+                    <label for="website-admin" class="block  text-md font-bold text-white max-sm:text-[14px]">شماره
+                        موبایل</label>
+                    <div class="flex shadow-xl text-white" dir="ltr">
+                        <span class="inline-flex items-center px-3 text-sm text-white bg-[#2c3036]  rounded-s-md ">
+                            +98
+                        </span>
+                        <input type="text" id="phoneNumber"
+                            class="bg-[#2c3036]  text-white border-[#2c3036] rounded-lg rounded-l-none flex-1 min-w-0 w-full text-smborder p-2.5 "
+                            placeholder="9123456789" minlength="10" maxlength="10" required>
+                    </div>
+                    <hr>
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium text-white">نام و
+                            نام خانوادگی</label>
+                        <input type="text" id="name"
+                            class="bg-[#2c3036]  text-white border-[#2c3036] rounded-lg block p-3 w-full text-smborder shadow-sm focus:ring-violet-500 focus:border-violet-500"
+                            placeholder="لطفا نام و نام خانوادگی خود را وارد نمایید" required>
+                    </div>
+
+
+                    <div class=" mx-auto">
+                        <label for="subject"
+                            class="block mb-2 text-sm font-medium text-white">موضوع</label>
+                        <select id="subject" required
+                            class=" bg-[#2c3036]  text-white border-[#2c3036] rounded-lg block p-3 w-full text-smborder shadow-sm focus:ring-violet-500 focus:border-violet-500 ">
+                            <option value="Offers">پیشنهادات</option>
+                            <option value="support">درخواست پشتیبانی</option>
+                            <option value="free">موضوع آزاد</option>
+                        </select>
+
+
+                    </div>
+
+
+                    <div class="sm:col-span-2">
+                        <label for="message"
+                            class="block mb-2 text-sm font-medium text-white">پیام</label>
+                        <textarea id="message" rows="6"
+                            class="bg-[#2c3036]  text-white border-[#2c3036] rounded-lg block p-3 w-full text-smborder shadow-sm focus:ring-violet-500 focus:border-violet-500"
+                            placeholder="پیام خود را وارد نمایید" required></textarea>
+                    </div>
+                    <button type="submit"
+                    class="w-full text-white bg-[#393d43] shadow-xl  border-solid border-2 border-violet-500/0  hover:border-violet-500/70 transition duration-300  font-bold font-vazirmatn rounded-lg text-sm px-5 py-2.5 text-center ">
+                ارسال پیام</button>
+                </form>
+            </div>
+        </section>
+
+
+
+
+
+        <%- include('./includes/Footer.ejs') %>
+    </div>
+
+
+
+</body>
