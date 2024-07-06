@@ -7,8 +7,9 @@
 
 
         <!-- editmod = true But No product found -->
-
-        <% if(result[0]) { %>
+        <% console.log(result); %>
+        <% console.log('==================================='); %>
+        <% if(result.length !==0) { %>
             <script>
                 const Toast3 = Swal.mixin({
                     toast: true,
@@ -146,7 +147,7 @@
                                                                                                     </span></td>
                                                                                                 <td>
                                                                                                     <a class="btn "
-                                                                                                        href="/admin/edit-product/<%= ad.id %>"
+                                                                                                        href="/edit-ad/<%= ad.id %>"
                                                                                                         style="background-color: #eb910a; color: white;">
                                                                                                         <i
                                                                                                             class="mdi mdi-pencil"></i>

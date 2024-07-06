@@ -6,7 +6,7 @@ import { Guard } from '../../core/guards/auth.guard';
 import upload from '../../core/configs/multer.config';
 import { CreateAdDto, DeleteAdDto } from './dto/ad.dto';
 import { ValidationMiddleware } from '../../core/middlewares/validator.middleware';
-import { BaseHttpController, controller, httpGet, httpPost, request, requestBody, response } from 'inversify-express-utils';
+import { BaseHttpController, controller, httpGet, httpPost, request, requestBody, requestParam, response } from 'inversify-express-utils';
 
 @controller('')
 export class AdController extends BaseHttpController {
@@ -30,5 +30,10 @@ export class AdController extends BaseHttpController {
   @httpPost('/del-ad', Guard.AuthGuard(), ValidationMiddleware.validateInput(DeleteAdDto, '/myads', 'با داده ها بازی نکن !'))
   async DeleteAd(@request() req: express.Request, @requestBody() deleteAdDto: DeleteAdDto, @response() res: express.Response) {
     return await this.adService.DeleteAd(req, res, deleteAdDto);
+  }
+
+  @httpGet('/edit-ad/:id', Guard.AuthGuard())
+  async GetEditAd(@request() req: express.Request, @requestParam('id') adId: string, @response() res: express.Response) {
+    return await this.adService.GetEditAd(req, res, adId);
   }
 }

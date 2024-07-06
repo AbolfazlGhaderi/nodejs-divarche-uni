@@ -1,4 +1,4 @@
-<%- include('../includes/Head-admin.ejs') %>
+<%- include('../includes/user-dashboard/Head') %>
 
 
     </head>
@@ -12,12 +12,12 @@
             <div id="layout-wrapper">
 
                 <!-- Header -->
-                <%- include('../includes/user-dashboard/Header.ejs') %>
+                <%- include('../includes/user-dashboard/Header') %>
 
                     <!-- End Header -->
 
                     <!-- Menu  -->
-                    <%- include('../includes/user-dashboard/Menu.ejs') %>
+                    <%- include('../includes/user-dashboard/Menu') %>
 
                         <!-- End Menu  -->
 
@@ -27,114 +27,138 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                                            <p class="page-title mb-0 font-size-20">ویرایش آگهی : <%- product.title %></p>
+                                            <p class="page-title mb-0 font-size-20">ویرایش آگهی : <%- ad.title %>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <div class="card "
-                                        style="background-color: #31363F; border-radius: 20px;">
-                                        <div class="card-body rounded-4"
-                                            style="background-color: #31363F; border-radius: 20px;">
-                                                <form action="#" method="post"
-                                                    enctype="multipart/form-data">
-                                                    <div class="row">
+                                        <div class="card " style="background-color: #31363F; border-radius: 20px;">
+                                            <div class="card-body rounded-4"
+                                                style="background-color: #31363F; border-radius: 20px;">
+                                                <% if(ad) {%>
+                                                    <form action="#" method="post" enctype="multipart/form-data">
+                                                        <div class="row">
 
-                                                        <div class="form-group col-12 text-white">
-                                                             <p for="formname"
-                                                            class="fontController  font-weight-bold">عنوان آگهی</p>
-                                                            <input type="text"
-                                                                class="text-white inputDesign form-control text-white font-weight-bold "
-                                                                id="
-                                                    title" name="title" placeholder="عنوان آگهی را وارد کنید" required>
-                                                        </div>
-
-                                                    </div>
-                                                    <hr>
-
-                                                    <div class="row">
-
-                                                        <div class="form-group col-md-4 text-white">
-
-                                                            <label for="formname" class="fontController">برند خودرو </label>
-
-                                                            <select id="brand" name="brand"
-                                                                class="text-white inputDesign  form-control ">
-                                                                <option value="saipa" >saipa</option>
-                                                                <option value="bmw" selected>BMW </option>
-
-                                                                <option value="benz">Benz</option>
-
-                                                            </select>
-
-                                                        </div>
-                                                        <div class="form-group col-md-4 text-white">
-                                                            <label for="formname" class="fontController font-weight-medium">سال تولید </label>
-                                                            <input type="number"
-                                                                class="text-white inputDesign  form-control font-weight-bold  font-size-16" id="year"
-                                                                name="year" placeholder="سال تولید خودرو را وارد کنید"
-                                                                required>
-                                                        </div>
-
-                                                        <div class="form-group col-md-4 text-white">
-                                                            <label for="formname" class="fontController font-weight-medium">رنگ </label>
-                                                            <input type="text"
-                                                                class="text-white inputDesign   form-control font-weight-bold  font-size-16" id="color"
-                                                                name="color" placeholder=" رنگ خودرو را وارد کنید"
-                                                                required>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="form-group col-md-4 text-white ">
-                                                            <label for="formname" class="fontController font-weight-medium"> کارکرد (کیلومتر) </label>
-                                                            <input type="number" name="operation" id="operation"
-                                                                class="text-white inputDesign   form-control font-weight-bold  font-size-16"
-                                                                placeholder="میزان کارکرد خودرو" required>
-                                                        </div>
-                                                        <div class="form-group col-md-4 text-white">
-                                                            <label for="formname"class="fontController font-weight-medium"> قیمت خودرو (تومان) </label>
-                                                            <input type="text" onkeyup="separateNum(this.value,this);"
-                                                                class="text-white inputDesign   form-control font-weight-bold  font-size-16"
-                                                                name="price" id="price"
-                                                                placeholder=" برای توافقی میتوانید ۰ بگذارید !"
-                                                                required>
-                                                        </div>
-
-                                                        <div class="form-group col-md-4 text-white">
-                                                            <label for="formname"class="fontController font-weight-medium"> تصویر خودرو </label>
-                                                            <input type="file" name="image" id="image"
-                                                                class="form-control text-white inputDesign  form-control font-weight-bold  font-size-16" required>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="row">
-
-                                                        <div class="form-group col-md-4 col-6 mb-3 text-white">
-                                                            <h5 class="fontController text-white mb-3 ">وضعیت موتور </h5>
-
-                                                            <div class="custom-control custom-checkbox mb-2">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="enginecheck" name="enginecheck" value="true">
-                                                                <label class="custom-control-label" style="font-size: 14px;"
-                                                                    for="enginecheck" >تعمیر شده </label>
+                                                            <div class="form-group col-12 text-white">
+                                                                <p for="formname"
+                                                                    class="fontController  font-weight-bold">عنوان آگهی
+                                                                </p>
+                                                                <input type="hidden" id="id" name="id" value="<%= ad.id %>">
+                                                                <input type="text"
+                                                                    class="text-white inputDesign form-control text-white font-weight-bold "
+                                                                    id="title" name="title" value="<%= ad.title %>"
+                                                                    required>
                                                             </div>
+
                                                         </div>
+                                                        <hr>
 
-                                                        <div class="form-group col-md-4 col-6 mb-3 text-white">
-                                                            <h5 class="fontController text-white mb-3">وضعیت گیربکس
-                                                            </h5>
+                                                        <div class="row">
 
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="gearboxcheck" name="gearboxcheck" value="true">
-                                                                <label class="custom-control-label" style="font-size: 14px;" for="gearboxcheck">
-                                                                    تعمیر شده</label>
+                                                            <div class="form-group col-md-4 text-white">
+                                                                <label for="formname"
+                                                                    class="fontController font-weight-medium">برند خودرو
+                                                                </label>
+                                                                <input list="brandlist" type="text" name="brand"
+                                                                    id="brand"
+                                                                    class="text-white inputDesign  form-control font-weight-bold  font-size-16"
+                                                                    value="<%= ad.brand %>" required>
+                                                                <datalist id="brandlist">
+                                                                    <option value="pride">پراید</option>
+                                                                    <option value="peugeot">پژو</option>
+                                                                    <option value="samand">سمند</option>
+                                                                    <option value="tiba">تیبا</option>
+                                                                    <option value="quik">کوییک</option>
+                                                                    <option value="renault">رنو</option>
+                                                                    <option value="bmw"> </option>
+                                                                    <option value="benz"></option>
+                                                                </datalist>
+
                                                             </div>
+                                                            <div class="form-group col-md-4 text-white">
+                                                                <label for="formname"
+                                                                    class="fontController font-weight-medium">سال تولید
+                                                                </label>
+                                                                <input type="number"
+                                                                    class="text-white inputDesign  form-control font-weight-bold  font-size-16"
+                                                                    id="year" name="year" value="<%= ad.p_year %>"
+                                                                    required>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4 text-white">
+                                                                <label for="formname"
+                                                                    class="fontController font-weight-medium">رنگ
+                                                                </label>
+                                                                <input type="text"
+                                                                    class="text-white inputDesign   form-control font-weight-bold  font-size-16"
+                                                                    id="color" name="color" value="<%= ad.color %>"
+                                                                    required>
+                                                            </div>
+
                                                         </div>
+
+                                                        <div class="row">
+                                                            <div class="form-group col-md-4 text-white ">
+                                                                <label for="formname"
+                                                                    class="fontController font-weight-medium"> کارکرد
+                                                                    (کیلومتر) </label>
+                                                                <input type="number" name="operation" id="operation"
+                                                                    class="text-white inputDesign   form-control font-weight-bold  font-size-16"
+                                                                    value="<%= ad.operation %>" required>
+                                                            </div>
+                                                            <div class="form-group col-md-4 text-white">
+                                                                <label for="formname"
+                                                                    class="fontController font-weight-medium"> قیمت
+                                                                    خودرو (تومان) </label>
+                                                                <input type="text"
+                                                                    onkeyup="separateNum(this.value,this);"
+                                                                    class="text-white inputDesign   form-control font-weight-bold  font-size-16"
+                                                                    name="price" id="price" value="<%= ad.price %>"
+                                                                    required>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4 text-white">
+                                                                <label for="formname"
+                                                                    class="fontController font-weight-medium"> تصویر
+                                                                    خودرو </label>
+                                                                <input type="file" name="image" id="image"
+                                                                    class="form-control text-white inputDesign  form-control font-weight-bold  font-size-16"
+                                                                    required>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row">
+
+                                                            <div class="form-group col-md-4 col-6 mb-3 text-white">
+                                                                <h5 class="fontController text-white mb-3 ">وضعیت موتور
+                                                                </h5>
+
+                                                                <div class="custom-control custom-checkbox mb-2">
+                                                                    <input type="checkbox" class="custom-control-input"
+                                                                        id="engine_check" name="engine_check"
+                                                                        <%= ad.engine_check === 'false' ? 'checked' : '' %>>
+                                                                    <label class="custom-control-label"
+                                                                        style="font-size: 14px;"
+                                                                        for="engine_check">تعمیر شده </label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-4 col-6 mb-3 text-white">
+                                                                <h5 class="fontController text-white mb-3">وضعیت گیربکس
+                                                                </h5>
+
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input"
+                                                                        id="gearbox_check" name="gearbox_check"
+                                                                        <%= ad.gearbox_check === 'false' ? 'checked' : '' %>>
+                                                                    <label class="custom-control-label"
+                                                                        style="font-size: 14px;" for="gearbox_check">
+                                                                        تعمیر شده</label>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
 
@@ -142,27 +166,48 @@
                                                         <div class="row align-items-center">
                                                             <div class="form-group col-md-5 text-center">
                                                                 <br>
-                                                                <img src="<%=product.imageurl %>" alt="عکس  محصول"
-                                                                    width="250" height="300">
+                                                                <% console.log(ad.image); %>
+                                                                <img src="<%= ad.image?.location ?? 'https://test-object-storage.storage.c2.liara.space/image-notfound.jpg' %>" alt="عکس  محصول"
+                                                                    width="300" height="300">
                                                             </div>
-                                                            <div class="form-group col-md-7 text-white justify-content-center align-items-center font-size-16">
-                                                                <label for="description" class="fontController">توضیحات خودرو</label>
-                                                                <textarea id="description" class="form-control  text-white inputDesign"
+                                                            <div
+                                                                class="form-group col-md-7 text-white justify-content-center align-items-center font-size-16">
+                                                                <label for="description" class="fontController">توضیحات
+                                                                    خودرو</label>
+                                                                <textarea id="description"
+                                                                    class="form-control  text-white inputDesign"
                                                                     name="description"
-                                                                    rows="7"><%=product.description %></textarea>
+                                                                    rows="7"><%=ad.description %></textarea>
                                                             </div>
 
 
 
 
                                                         </div>
-                                                        <button type="submit" class="btn " style="background-color: #2c6904; color: white; font-weight: 700;" >ویرایش
+                                                        <button type="submit" class="btn "
+                                                            style="background-color: #2c6904; color: white; font-weight: 700;">ویرایش
                                                             آگهی</button>
-                                                        <a href="#" class="btn" style="background-color: #dd2e16; color: white; font-weight: 700;" >انصراف</a>
+                                                        <a href="/myads" class="btn"
+                                                            style="background-color: #dd2e16; color: white; font-weight: 700;">انصراف</a>
 
 
 
-                                                </form>
+                                                    </form>
+                                                <% } else {%>
+                                                    <div class="row">
+                                                        <div class="col-12"
+                                                            style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                            <div class="alert alert-danger"
+                                                                style="width:99%;"
+                                                                role="alert">
+                                                                <span
+                                                                    class="font-weight-bold font-vazirmatn">
+                                                                    هیچ آگهی ای ثبت نشده
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -170,7 +215,7 @@
 
                             </div>
 
-                            <%- include('../includes/user-dashboard/Footer.ejs') %>
+                            <%- include('../includes/user-dashboard/Footer') %>
 
                         </div>
 
@@ -196,8 +241,7 @@
 
                 <div class="p-4">
                     <div class="mb-2">
-                        <img src="#" class="img-fluid img-thumbnail"
-                            alt="">
+                        <img src="#" class="img-fluid img-thumbnail" alt="">
                     </div>
                     <div class="custom-control custom-switch mb-3">
                         <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked>
@@ -205,13 +249,11 @@
                     </div>
 
                     <div class="mb-2">
-                        <img src="#" class="img-fluid img-thumbnail"
-                            alt="">
+                        <img src="#" class="img-fluid img-thumbnail" alt="">
                     </div>
                     <div class="custom-control custom-switch mb-3">
                         <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch"
-                            data-bsstyle="/assets/css/bootstrap-dark.min.css"
-                            data-appstyle="/assets/css/app-dark.css">
+                            data-bsstyle="/assets/css/bootstrap-dark.min.css" data-appstyle="/assets/css/app-dark.css">
                         <label class="custom-control-label" for="dark-mode-switch">طرح تیره</label>
                     </div>
                 </div>
@@ -248,6 +290,6 @@
             }
         }
     </script>
-    <%- include('../includes/user-dashboard/End.ejs') %>
+    <%- include('../includes/user-dashboard/End') %>
 
-</html>
+        </html>

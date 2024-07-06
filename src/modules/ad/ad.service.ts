@@ -13,6 +13,7 @@ import { S3Service } from '../../shared/services/s3.service';
 import { IAdService } from './interface/ad.service.interface';
 import { PublicMessageEnum } from '../../common/enums/message.enum';
 import { CheckEnvVariables, GenerateImageName } from '../../core/utils/functions.utils';
+import { error } from 'console';
 
 @injectable()
 export class AdService implements IAdService {
@@ -108,5 +109,17 @@ export class AdService implements IAdService {
     }
     req.flash('result', PublicMessageEnum.AdDeleteSuccess);
     return res.redirect('/myads');
+  }
+
+  async GetEditAd(req: express.Request, res: express.Response, adId: string) {
+    const user = req.userSession?.user as UserEntity;
+    const ad = await this.adRepository.findOne({ where: { id: adId, user: { id: user.id } }, relations: { image: true } });
+    return res.render('./user-dashboard/edit-ad', {
+      pageTitle: 'Edit Ad - DivarChe',
+      ad,
+      userData: user,
+      error: req.flash(`error`),
+      validationError: req.flash(`ValidationError`),
+    });
   }
 }
