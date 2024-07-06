@@ -27,7 +27,7 @@ export class UserService implements IUserService {
     }
     const user = req.userSession?.user as UserEntity;
 
-    const countAd = await this.adRepository.count({ where: { user: user } });
+    const countAd = await this.adRepository.count({ where: { user: {id:user.id} } });
     user.phone = user.phone.replace('+98', '0');
 
     return res.render('./user-dashboard/Dashboard', {
