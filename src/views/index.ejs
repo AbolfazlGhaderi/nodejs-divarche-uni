@@ -1,0 +1,140 @@
+<%- include('./includes/Head.ejs') %>
+    </head>
+
+    <body dir="rtl" bgcolor="#222831">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+        <div class="relative max-w-[1440px] mx-12 2xl:mx-auto max-sm:mx-6">
+
+            <!-- nav bar -->
+            <%- include('./includes/Nav.ejs') %>
+
+                <!-- hero -->
+                <div class="flex items-center justify-center mt-[50px] w-full">
+                    <div class="flex flex-col lg:flex-row w-full lg:space-x-4 space-y-4 lg:space-y-0">
+
+                        <div class="flex-1 flex items-center justify-center order-1 lg:order-2">
+                            <img src="https://test-object-storage.storage.c2.liara.space/Data%20extraction-amico.webp"
+                                alt="img" class="w-[300px] h-[300px] lg:w-[500px] lg:h-[500px]">
+                        </div>
+
+                        <div class="flex-1 flex items-center justify-center order-2 md:order-1">
+                            <h1
+                                class="max-w text-3xl font-vazirmatn font-bold text-white text-center lg:text-5xl lg:text-right">
+                                جای <span class="text-orange-300">تبلیغات</span> شما اینجاست!
+                                <p class="mt-5 text-lg  text-centermax-sm:text-sm">بهترین سایت خرید و فروش خودرو های دست
+                                    دوم</p>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- down -->
+                <div class="flex justify-center mb-[70px] max-md:mt-[40px]">
+
+                    <div
+                        class=" animate-bounce bg-white dark:bg-slate-800 p-2 w-10 h-10 ring-1  ring-slate-200/20 shadow-lg rounded-full flex items-center justify-center">
+                        <a href="#"> <svg class=" w-6 h-6  text-violet-500" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </a>
+                    </div>
+                </div>
+                </svg>
+
+                <!-- adds -->
+                <div class="justify-center text-center">
+                    <p
+                        class="font-vazirmatn font-bold text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                        لیست تبلیغات در تمامی شهر ها</p>
+                    <br>
+                    <p class="text-white font-bold font-vazirmatn">برای اطلاعات بیشتر ، روی آگهی مورد نظر <span
+                            class="text-orange-300">کیلک</span> کنید</p>
+                    <br>
+                </div>
+
+
+                <div class="grid  gap-10 my-5 mx-1 xl:grid-cols-3 lg:grid-cols-2 max-md: grid-cols-1 ">
+
+                    <% if(ads[0]){ %>
+
+                        <% ads.forEach(ad=> { %>
+                            <div
+                                class="ClDiv cursor-pointer rounded-2xl  h-auto  shadow-[#31304D] hover:shadow-2xl hover:shadow-[#171723] hover:bg-[#363b42] hover:ring-4 ring-violet-500/70 transition duration-300"
+                                data-url="/ad/<%=ad.id %>">
+                                <div class="flex rounded-lg  mb-6 w-full mt-6 aspect-w-1 aspect-h-1 justify-center ">
+                                    <img src="<%= ad.image?.location ?? 'https://test-object-storage.storage.c2.liara.space/image-notfound.jpg' %>"
+                                        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+                                        class="h-[200px] w-[200px] rounded-2xl ">
+                                </div>
+                                <div
+                                    class="bg-[#363b42] text-white rounded-xl  shadow-xl  transition duration-300 text-center py-5 font-vazirmatn">
+                                    <h1 class="font-bold break-words md:text-lg text-center pl-4 "><a href="#">
+                                            <%= ad.title %>
+                                        </a></h1>
+
+                                    <div class=" justify-between flex pl-4 py-4">
+                                        <p
+                                            class="w-auto focus:ring-4  text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5">
+                                        <div class=" text-center">
+                                            <p class="inline-flex gap-2"> <span> <%= ad.p_year %> </span></p>
+
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="inline-flex gap-2"><span> <%= ad.operation %> </span> کیلومتر </p>
+                                        </div>
+                                        </p>
+                                    </div>
+                                    <div class="mt-5">
+
+
+                                        <span
+                                            class=" text-md font-medium me-4  px-2.5 py-0.5 rounded bg-yellow-900 text-yellow-300">
+                                        <%= ad.city.name %>
+                                            </span>
+
+                                        <span
+                                            class=" text-green-300 text-md font-medium me-4 px-2.5 py-0.5 rounded bg-green-900 ">
+                                            <%= ad.price %>
+                                            <span>T</span></span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+
+                            <% }else { %>
+                                <div class="flex items-center p-4 mb-4 text-sm  border rounded-lg bg-gray-800 text-yellow-300 border-yellow-800"
+                                    role="alert">
+                                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                    </svg>
+                                    <span class="sr-only">Info</span>
+                                    <div class="font-bold font-vazirmatn">
+                                        <p>هیچ آگهی ای موجود نمیباشد</p>
+                                    </div>
+                                </div>
+                            <% } %>
+
+
+
+
+                </div>
+
+                <!-- footer -->
+                <%- include('./includes/Footer.ejs') %>
+        </div>
+
+        <script>
+            document.querySelectorAll(".ClDiv").forEach(function (div) {
+                div.addEventListener("click", function () {
+                    const url = div.getAttribute("data-url");
+                    window.location.href = url;
+                });
+            });
+        </script>
+
+    </body>

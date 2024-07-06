@@ -32,12 +32,16 @@ export class UserController extends BaseHttpController {
   }
 
   @httpGet('/aboutus') //TODO: Should create Global Service and controller
-  async GetAboutUs(@request() req: express.Request, @response() res: express.Response) {
-    return await this.userService.GetAboutUs(req, res);
+  async GetAboutUs( @response() res: express.Response) {
+    return await this.userService.GetAboutUs( res);
   }
 
   @httpGet('/contact') //TODO: Should create Global Service and controller
-  async GetContact(@request() req: express.Request, @response() res: express.Response) {
-    return await this.userService.GetContact(req, res);
+  async GetContact(@response() res: express.Response) {
+    return await this.userService.GetContact(res);
+  }
+  @httpGet('/') //TODO: Should create Global Service and controller
+  async GetIndex( @response() res: express.Response) {
+    return await this.userService.GetIndex(res);
   }
 }

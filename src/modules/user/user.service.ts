@@ -27,7 +27,7 @@ export class UserService implements IUserService {
     }
     const user = req.userSession?.user as UserEntity;
 
-    const countAd = await this.adRepository.count({ where: { user: {id:user.id} } });
+    const countAd = await this.adRepository.count({ where: { user: { id: user.id } } });
     user.phone = user.phone.replace('+98', '0');
 
     return res.render('./user-dashboard/Dashboard', {
@@ -45,16 +45,16 @@ export class UserService implements IUserService {
 
   async PostAddUserCity(req: express.Request, res: express.Response, addUserCityDto: AddUserCityDto) {
     const city = await this.cityRepository.findOne({ where: { name: addUserCityDto.city } });
-    
-    if(!city){
+
+    if (!city) {
       req.flash('error', 'شهر مورد نظر یافت نشد');
-      return  res.redirect('/add-city')
+      return res.redirect('/add-city');
     }
 
     const user = req.userSession?.user as UserEntity;
 
-    user.city = city
-    await this.userRepository.save(user)
+    user.city = city;
+    await this.userRepository.save(user);
 
     return res.redirect('/dashboard');
   }
@@ -68,10 +68,14 @@ export class UserService implements IUserService {
     return res.redirect('/dashboard');
   }
 
-  async GetAboutUs(req: express.Request, res: express.Response){
-    return res.render('./about-us', {pageTitle: 'About Us - DivarChe',active: 'aboutus'})
+  async GetAboutUs(res: express.Response) {
+    return res.render('./about-us', { pageTitle: 'About Us - DivarChe', active: 'aboutus' });
   }
-  async GetContact(req: express.Request, res: express.Response){
-    return res.render('./contact', {pageTitle: 'About Us - DivarChe',active: 'contact'})
+  async GetContact(res: express.Response) {
+    return res.render('./contact', { pageTitle: 'Contact - DivarChe', active: 'contact' });
+  }
+  async GetIndex(res: express.Response) {
+    const ads = await this.adRepository.find({ relations: { city: true, image: true } });
+    return res.render('./index', { pageTitle: 'DivarChe', active: '', ads: ads });
   }
 }
