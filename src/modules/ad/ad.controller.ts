@@ -4,7 +4,7 @@ import { AdService } from './ad.service';
 import { IOCTYPES } from '../../iOC/ioc.types';
 import { Guard } from '../../core/guards/auth.guard';
 import upload from '../../core/configs/multer.config';
-import { CreateAdDto, DeleteAdDto } from './dto/ad.dto';
+import { CreateAdDto, DeleteAdDto, UpdateAdDto } from './dto/ad.dto';
 import { ValidationMiddleware } from '../../core/middlewares/validator.middleware';
 import { BaseHttpController, controller, httpGet, httpPost, request, requestBody, requestParam, response } from 'inversify-express-utils';
 
@@ -33,7 +33,12 @@ export class AdController extends BaseHttpController {
   }
 
   @httpGet('/edit-ad/:id', Guard.AuthGuard())
-  async GetEditAd(@request() req: express.Request, @requestParam('id') adId: string, @response() res: express.Response) {
-    return await this.adService.GetEditAd(req, res, adId);
+  async GetUpdateAd(@request() req: express.Request, @requestParam('id') adId: string, @response() res: express.Response) {
+    return await this.adService.GetUpdaetAd(req, res, adId);
+  }
+  
+  @httpPost('/update-ad', Guard.AuthGuard(), upload.single('image'), ValidationMiddleware.validateInput(UpdateAdDto, '/myads')) // TODO: Should redirect to edit-ad/:id
+  async UpdateAd(@request() req: express.Request, @requestBody() updateAdDto: UpdateAdDto, @response() res: express.Response) {
+    return await this.adService.UpdateAd(req, res, updateAdDto);
   }
 }

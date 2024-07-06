@@ -12,5 +12,9 @@ export enum ValidationErrorMessageEnum {
 export enum PublicMessageEnum {
   AdDeleteSuccess = 'آگهی با موفقیت حذف شد',
   AdCreateSuccess = 'آگهی با موفقیت ایجاد شد',
-  AdDeleteError = 'آگهی موجود نمیباشد ', // TODO:
+  AdUpdateSuccess = 'آگهی با موفقیت بروزرسانی شد',
+}
+
+export enum NotFoundErrorMessageEnum {
+  AdNotFound = 'آگهی موجود نمیباشد ',
 }

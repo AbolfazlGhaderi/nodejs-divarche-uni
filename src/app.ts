@@ -78,7 +78,7 @@ export class App {
     app.use(json());
     app.use(express.urlencoded({ extended: false }));
     app.use(cookieParser());
-    app.use(Session({ secret: 'sdssdcscsdcscsdcsdcscsocweowc5wc4we5de', cookie: { maxAge: 2000 } }));
+    app.use(Session({ secret: 'sdssdcscsdcscsdcsdcscsocweowc5wc4we5de', cookie: { maxAge: 1500 } }));
     app.use(flash());
     app.use(morgan('dev'));
     app.use(cors());

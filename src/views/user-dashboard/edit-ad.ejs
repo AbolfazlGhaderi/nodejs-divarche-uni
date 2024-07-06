@@ -37,8 +37,32 @@
                                         <div class="card " style="background-color: #31363F; border-radius: 20px;">
                                             <div class="card-body rounded-4"
                                                 style="background-color: #31363F; border-radius: 20px;">
+
+                                                <% if(error.length !==0 ){ %>
+                                                    <div class="col-12"
+                                                        style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                        <div class="alert alert-danger" style="width:99%;"
+                                                            role="alert">
+                                                            <span class="font-weight-bold font-vazirmatn">
+                                                                <%= error%>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                <% if(validationError.length !==0 ){ %>
+                                                    <div class="col-12"
+                                                        style="width: 100%;text-align:center; justify-content: center; align-items: center; padding: 10 10;">
+                                                        <div class="alert alert-danger" style="width:99%;"
+                                                            role="alert">
+                                                            <span class="font-weight-bold font-vazirmatn">
+                                                                <%= validationError%>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
                                                 <% if(ad) {%>
-                                                    <form action="#" method="post" enctype="multipart/form-data">
+                                                    <form action="/update-ad" method="post" enctype="multipart/form-data">
                                                         <div class="row">
 
                                                             <div class="form-group col-12 text-white">
@@ -83,7 +107,7 @@
                                                                 </label>
                                                                 <input type="number"
                                                                     class="text-white inputDesign  form-control font-weight-bold  font-size-16"
-                                                                    id="year" name="year" value="<%= ad.p_year %>"
+                                                                    id="p_year" name="p_year" value="<%= ad.p_year %>"
                                                                     required>
                                                             </div>
 
@@ -121,54 +145,47 @@
 
                                                             <div class="form-group col-md-4 text-white">
                                                                 <label for="formname"
-                                                                    class="fontController font-weight-medium"> تصویر
-                                                                    خودرو </label>
+                                                                    class="fontController font-weight-medium"> 
+                                                                تصویر جدید <span class="text-danger" style="font-size: 15px;">( jpg / jpeg / png ) </span> 
+                                                                </label>
                                                                 <input type="file" name="image" id="image"
                                                                     class="form-control text-white inputDesign  form-control font-weight-bold  font-size-16"
-                                                                    required>
+                                                                    >
                                                             </div>
 
                                                         </div>
 
                                                         <div class="row">
 
-                                                            <div class="form-group col-md-4 col-6 mb-3 text-white">
-                                                                <h5 class="fontController text-white mb-3 ">وضعیت موتور
-                                                                </h5>
+                                                            <div class="form-group col-6 col-lg-4 mb-3 text-white">
+                                                                <h5 class=" mb-3 fontController text-white">وضعیت موتور </h5>
 
                                                                 <div class="custom-control custom-checkbox mb-2">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                        id="engine_check" name="engine_check"
-                                                                        <%= ad.engine_check === 'false' ? 'checked' : '' %>>
-                                                                    <label class="custom-control-label"
-                                                                        style="font-size: 14px;"
-                                                                        for="engine_check">تعمیر شده </label>
+                                                                    <input type="checkbox" class="custom-control-input font-weight-bold  font-size-16" id="engine_check" name="engine_check" value="false"   <%= ad.engine_check === 'false' ? 'checked' : '' %>>
+                                                                    <label class="custom-control-label  " style="font-size: 14px;"for="engine_check">تعمیر شده </label>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="form-group col-md-4 col-6 mb-3 text-white">
-                                                                <h5 class="fontController text-white mb-3">وضعیت گیربکس
-                                                                </h5>
+                                                            <div class="form-group col-6 col-lg-4 mb-3 text-white">
+                                                                <h5 class=" mb-3 fontController text-white">وضعیت گیربکس </h5>
 
                                                                 <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input"
-                                                                        id="gearbox_check" name="gearbox_check"
-                                                                        <%= ad.gearbox_check === 'false' ? 'checked' : '' %>>
-                                                                    <label class="custom-control-label"
-                                                                        style="font-size: 14px;" for="gearbox_check">
-                                                                        تعمیر شده</label>
+                                                                    
+                                                                    <input type="checkbox" class="custom-control-input inputDesign font-weight-bold  font-size-16" id="gearbox_check" name="gearbox_check" value="false" <%= ad.gearbox_check === 'false' ? 'checked' : '' %>>
+                                                                    <label class="custom-control-label  " style="font-size: 14px;" for="gearbox_check"> تعمیر شده</label>
                                                                 </div>
                                                             </div>
-                                                        </div>
-
+                                                            </div>
+                                                          
+                                                            
 
 
                                                         <div class="row align-items-center">
                                                             <div class="form-group col-md-5 text-center">
                                                                 <br>
-                                                                <% console.log(ad.image); %>
+                                                                <p style="color: white;">تصویر خودرو </p>
                                                                 <img src="<%= ad.image?.location ?? 'https://test-object-storage.storage.c2.liara.space/image-notfound.jpg' %>" alt="عکس  محصول"
-                                                                    width="300" height="300">
+                                                                    width="200" height="200">
                                                             </div>
                                                             <div
                                                                 class="form-group col-md-7 text-white justify-content-center align-items-center font-size-16">

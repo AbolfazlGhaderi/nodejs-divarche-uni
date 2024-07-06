@@ -31,3 +31,30 @@ export class DeleteAdDto {
   @IsUUID()
   id: string;
 }
+
+export class UpdateAdDto {
+  @IsString()
+  id: string;
+  @IsString()
+  title: string;
+  @IsString()
+  brand: string;
+  @IsNumberString()
+  p_year: string;
+  @IsNumberString()
+  operation: string;
+  @IsString()
+  color: string;
+  @IsString()
+  price: string;
+  @IsString()
+  description: string;
+  @IsOptional()
+  @IsString()
+  @IsEnum(['false'])
+  engine_check: string;
+  @IsOptional()
+  @IsString()
+  @IsEnum([ 'false'])
+  gearbox_check: string;
+}

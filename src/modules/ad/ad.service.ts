@@ -7,13 +7,12 @@ import { cityRepository } from './city.repository';
 import { ImageRepository } from './image.repository';
 import { UserEntity } from '../../models/user.entity';
 import { ImageEntity } from '../../models/image.entity';
-import { CreateAdDto, DeleteAdDto } from './dto/ad.dto';
 import { FileChecker } from '../../core/utils/file.utils';
 import { S3Service } from '../../shared/services/s3.service';
 import { IAdService } from './interface/ad.service.interface';
-import { PublicMessageEnum } from '../../common/enums/message.enum';
+import { CreateAdDto, DeleteAdDto, UpdateAdDto } from './dto/ad.dto';
 import { CheckEnvVariables, GenerateImageName } from '../../core/utils/functions.utils';
-import { error } from 'console';
+import { NotFoundErrorMessageEnum, PublicMessageEnum } from '../../common/enums/message.enum';
 
 @injectable()
 export class AdService implements IAdService {
@@ -104,14 +103,14 @@ export class AdService implements IAdService {
   async DeleteAd(req: express.Request, res: express.Response, deleteAdData: DeleteAdDto) {
     const result = await this.adRepository.delete({ id: deleteAdData.id });
     if (result.affected === 0) {
-      req.flash('error', PublicMessageEnum.AdDeleteError);
+      req.flash('error', NotFoundErrorMessageEnum.AdNotFound);
       return res.redirect('/myads');
     }
     req.flash('result', PublicMessageEnum.AdDeleteSuccess);
     return res.redirect('/myads');
   }
 
-  async GetEditAd(req: express.Request, res: express.Response, adId: string) {
+  async GetUpdaetAd(req: express.Request, res: express.Response, adId: string) {
     const user = req.userSession?.user as UserEntity;
     const ad = await this.adRepository.findOne({ where: { id: adId, user: { id: user.id } }, relations: { image: true } });
     return res.render('./user-dashboard/edit-ad', {
@@ -122,4 +121,66 @@ export class AdService implements IAdService {
       validationError: req.flash(`ValidationError`),
     });
   }
+  async UpdateAd(req: express.Request, res: express.Response, updateAdData: UpdateAdDto) {
+    const user = req.userSession?.user as UserEntity;
+    const file = req.file;
+    let image: undefined | ImageEntity;
+    
+    if (file) {
+      const validationFormat = FileChecker.CheckImageFormat(file);
+      if (validationFormat.status === false) {
+        req.flash('ValidationError', validationFormat.message);
+        return res.redirect('/myads'); // TODO: should redirect to edit-ad/:id
+      }
+
+      // Generate Name File
+      file.originalname = GenerateImageName(file.originalname);
+
+      // Upload File
+      const uploadFile = await this.s3Service.UploadFile(file, CheckEnvVariables(process.env.S3_BUCKET, 'S3 Bucket'));
+      if (uploadFile.status === false) {
+        req.flash('Error', uploadFile.message);
+        return res.redirect('/myads'); // TODO: should redirect to edit-ad/:id
+      }
+
+      image = await this.imageRepository.save({
+        name: file.originalname,
+        location: uploadFile.fileAddress,
+        section: 'ad',
+        user: user,
+      });
+    }
+
+    const { id, brand, color, description, engine_check, gearbox_check, operation, p_year, price, title } = updateAdData;
+    const ad = await this.adRepository.findOne({ where: { id: id, user: { id: user.id } }, relations: { image: true, city: true } });
+    if (!ad) {
+      req.flash('error', NotFoundErrorMessageEnum.AdNotFound);
+      return res.redirect('/myads'); // TODO: should redirect to edit-ad/:id
+    }
+
+    // Update ===>
+    ad.brand = brand || ad.brand;
+    ad.color = color || ad.color;
+    ad.description = description || ad.description;
+    ad.engine_check = engine_check || 'true';
+    ad.gearbox_check = gearbox_check || 'true';
+    ad.operation = operation || ad.operation;
+    ad.p_year = p_year || ad.p_year;
+    ad.price = price.replaceAll(',', '') || ad.price;
+    ad.title = title || ad.title;
+    ad.image = image ? image : ad.image;
+    ad.user = user;
+    ad.city = ad.city;
+    // <=== ----
+
+    const updateAd = await this.adRepository.save(ad);
+
+    req.flash('result', PublicMessageEnum.AdUpdateSuccess);
+
+    return res.redirect('/myads');
+  }
+
+  // async UploadeImageAd(file : Express.Multer.File){  // TODO: Should create Uploade Service
+
+  // }
 }
