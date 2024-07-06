@@ -1,0 +1,113 @@
+<%- include('./includes/Head.ejs') %>
+	</head>
+
+	<body dir="rtl" bgcolor="#222831">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+		<div class="relative max-w-[1440px] mx-12 2xl:mx-auto max-sm:mx-6">
+
+			<!-- nav bar -->
+			<%- include('./includes/Nav.ejs') %>
+
+				<div class=" rounded-lg justify-center text-center bg-[#31363F] text-white font-vazirmatn">
+
+					<div class="flex items-center  justify-center  text-center mx-auto rounded-lg">
+						<img class="p-8 rounded-lg "
+							src="<%= ad.image?.location ?? 'https://test-object-storage.storage.c2.liara.space/image-notfound.jpg' %>" alt="ad image"
+							width="400px" height="400px" />
+
+					</div>
+
+					<% if(ad){ %>
+						<div
+							class="grid  gap-10 mt-10  mx-1 xl:grid-cols-3 lg:grid-cols-2 max-md: grid-cols-1 font-bold pb-10">
+							<h3>
+								<%= ad.title %>
+							</h3>
+							<p> برند : <span>
+									<%= ad.brand %>
+								</span> </p>
+							<p> سال تولید : <span>
+									<%= ad.p_year %>
+								</span> </p>
+							<p> کارکرد : <span>
+									<%= ad.operation %>
+								</span> کیلومتر </p>
+							<p> رنگ : <span>
+									<%= ad.color %>
+								</span> </p>
+							<p>وضعیت موتور : <span>
+									<%= ad.gearbox_check==='false' ?'تعمیر شده':'سالم' %>
+								</span></p>
+							<p>وضعیت گیربکس : <span>
+									<%= ad.gearbox_check==='false' ?'تعمیر شده':'سالم' %>
+								</span></p>
+
+							<div
+								class="flex items-center text-center w-2/3 mx-auto justify-center p-4 my-4 text-sm border rounded-lg bg-[#2c3036] font-bold text-green-400 border-green-800"
+								role="alert">
+
+								<div class="text-center justify-center ">
+									<span class="font-medium"></span> قیمت : <span>
+										<%= ad.price %>
+									</span> تومان<span>
+
+									</span>
+								</div>
+							</div>
+
+							<p> شهر : <span>
+									<%= ad.city.name %>
+								</span></p>
+
+						</div>
+
+						<div class="w-3/4 mx-auto">
+							<p class="text-right">توضیحاتی درباره خودرو</p>
+							<div
+								class="flex  p-4 my-4 text-sm   rounded-lg "
+								role="alert">
+								<textarea id="description" name="description" rows="7" class="text-right p-2.5 w-full text-sm  rounded-lg border bg-[#2c3036] border-gray-600 text-white " disabled><%= ad.description %></textarea>
+							</div>
+							<p class="text-right mt-11">اطلاعاتی در مورد فروشنده </p>
+							<div
+								class="flex items-center text-center justify-center p-4 my-4 text-sm border rounded-lg bg-[#2c3036] font-bold text-green-400 border-green-800"
+								role="alert">
+
+								<div class="text-center justify-center ">
+									<span class="font-medium"></span> شماره همراه : <span>
+										<%= ad.user.phone %>
+									</span> <span>
+
+									</span>
+								</div>
+							</div>
+						</div>
+						<% } else{ %>
+							<div class="flex items-center p-4 mb-4 text-sm  border rounded-lg bg-gray-800 text-yellow-300 border-yellow-800"
+							role="alert">
+							<svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+								 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+								 <path
+									  d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+							</svg>
+							<span class="sr-only">Info</span>
+							<div class="font-bold font-vazirmatn">
+								 <p>هیچ آگهی ای موجود نمیباشد</p>
+							</div>
+					  </div>
+						<% } %>
+
+
+
+							<br><br><br>
+
+				</div>
+
+				<!-- footer -->
+				<%- include('./includes/Footer.ejs') %>
+		</div>
+
+
+
+	</body>

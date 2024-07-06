@@ -41,4 +41,9 @@ export class AdController extends BaseHttpController {
   async UpdateAd(@request() req: express.Request, @requestBody() updateAdDto: UpdateAdDto, @response() res: express.Response) {
     return await this.adService.UpdateAd(req, res, updateAdDto);
   }
+
+  @httpGet('/ad/:id')
+  async GetAd(@request() req: express.Request, @requestParam('id') adId: string, @response() res: express.Response) {
+    return await this.adService.GetAd(req, res, adId);
+  }
 }

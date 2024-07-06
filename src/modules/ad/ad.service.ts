@@ -125,7 +125,7 @@ export class AdService implements IAdService {
     const user = req.userSession?.user as UserEntity;
     const file = req.file;
     let image: undefined | ImageEntity;
-    
+
     if (file) {
       const validationFormat = FileChecker.CheckImageFormat(file);
       if (validationFormat.status === false) {
@@ -183,4 +183,14 @@ export class AdService implements IAdService {
   // async UploadeImageAd(file : Express.Multer.File){  // TODO: Should create Uploade Service
 
   // }
+
+  async GetAd(req: express.Request, res: express.Response, adId: string) {
+    let ad = await this.adRepository.findOne({ where: { id: adId }, relations: { image: true, city: true ,user:true} });
+    if(!ad){
+
+      return res.render('./ad', { pageTitle: 'ad - DivarChe', ad:undefined, active: 'example' });
+    }
+    ad.user.phone = ad.user.phone.replace('+98','0')
+    return res.render('./ad', { pageTitle: 'ad - DivarChe', ad, active: 'example' });
+  }
 }
